@@ -499,6 +499,7 @@ is_a: GO:0032774 ! RNA biosynthetic process
 is_a: GO:0034645 ! cellular macromolecule biosynthetic process
 relationship: BFO_0000066 CL:0000000 ! cell
 relationship: BFO_0000066 ncro:0000015 ! animal_study_model
+relationship: BFO_0000066 CLO_0000031 ! cell line
 relationship: part_of GO:0010467 ! gene expression
 property_value: IAO:0000412 http://purl.obolibrary.org/obo/go.owl
 
@@ -24516,4 +24517,5 @@ name: similar_to
 namespace: sequence
 subset: SOFA
 is_symmetric: true
+
 
