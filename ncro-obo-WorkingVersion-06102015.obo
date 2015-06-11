@@ -1,7 +1,7 @@
 format-version: 1.2
-date: 09:06:2015 15:53
-saved-by: Jingshan Huang
-auto-generated-by: OBO-Edit 2.2
+date: 10:06:2015 23:42
+saved-by: He Zhang
+auto-generated-by: OBO-Edit 2.3
 subsetdef: biosapiens "biosapiens protein feature ontology"
 subsetdef: Cross_product_review "Involved_in"
 subsetdef: DBVAR "database of genomic structural variation"
@@ -53,25 +53,6 @@ def: "Something that exists as a particular and discrete unit" []
 creation_date: 2013-09-27T11:52:15Z
 
 [Term]
-id: OBI:0100026
-name: organism
-def: "A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs." []
-relationship: BFO_0000112 DOID:4 ! disease
-is_a: snap:IndependentContinuant ! independent_continuant
-property_value: IAO:0000111 "organism" xsd:string
-property_value: IAO:0000112 "animal" xsd:string
-property_value: IAO:0000112 "fungus" xsd:string
-property_value: IAO:0000112 "plant" xsd:string
-property_value: IAO:0000112 "virus" xsd:string
-property_value: IAO:0000114 IAO:0000122
-property_value: IAO:0000116 "10/21/09: This is a placeholder term, that should ideally be imported from the NCBI taxonomy, but the high level hierarchy there does not suit our needs (includes plasmids and 'other organisms')" xsd:string
-property_value: IAO:0000116 "13-02-2009:\nOBI doesn't take position as to  when an organism starts or ends being an organism - e.g. sperm, foetus.\nThis issue is outside the scope of OBI." xsd:string
-property_value: IAO:0000117 "GROUP: OBI Biomaterial Branch" xsd:string
-property_value: IAO:0000119 "WEB: http://en.wikipedia.org/wiki/Organism" xsd:string
-xref: SNOMEDCT:410607006
-xref: NCIt:C14250
-
-[Term]
 id: CHEBI:23367
 name: molecular entity
 namespace: chebi_ontology
@@ -88,16 +69,21 @@ synonym: "protein residue" NARROW [PRO:DAN]
 is_a: BFO:0000024 ! fiat object
 
 [Term]
-id: OBI_0100047
-name: processed material
-namespace: OBI
-is_a: snap:MaterialEntity ! material_entity
-
-[Term]
-id: OBI_0100060
-name: cultured cell population
-namespace: OBI
-is_a: OBI_0100047 ! processed material
+id: CL:0000000
+name: cell
+namespace: cell
+def: "A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane." [CARO:mah]
+comment: The definition of cell is intended to represent all cells, and thus a cell is defined as a material entity and not an anatomical structure, which implies that it is part of an organism (or the entirety of one).
+xref: CALOHA:TS-2035
+xref: FMA:68646
+xref: GO:0005623
+xref: KUPO:0000002
+xref: VHOG:0001533
+xref: WBbt:0004017
+xref: XAO:0003012
+is_a: GO:0005575 ! cellular_component
+relationship: BFO_0000066 UBERON:0000062 ! organ
+relationship: OBO_REL:part_of UBERON:0000062 ! organ
 
 [Term]
 id: CLO_0000031
@@ -111,11 +97,11 @@ id: DOID:4
 name: disease
 namespace: disease_ontology
 def: "A disease is a disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism." [url:http\://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf]
-is_a: span:Process ! process
 xref: MSH:D004194
 xref: NCIt:C2991
 xref: SNOMEDCT_2010_1_31:64572001
 xref: UMLS_CUI:C0012634
+is_a: span:Process ! process
 
 [Term]
 id: GO:0000122
@@ -424,23 +410,6 @@ is_a: GO:0044464 ! cell part
 property_value: IAO:0000412 http://purl.obolibrary.org/obo/go.owl
 
 [Term]
-id: CL:0000000
-name: cell
-namespace: cell
-def: "A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane." [CARO:mah]
-comment: The definition of cell is intended to represent all cells, and thus a cell is defined as a material entity and not an anatomical structure, which implies that it is part of an organism (or the entirety of one).
-xref: CALOHA:TS-2035
-xref: FMA:68646
-xref: GO:0005623
-xref: KUPO:0000002
-xref: VHOG:0001533
-xref: WBbt:0004017
-xref: XAO:0003012
-is_a: GO:0005575 ! cellular_component
-relationship: BFO_0000066 UBERON:0000062 ! organ
-relationship: OBO_REL:part_of UBERON:0000062 ! organ
-
-[Term]
 id: GO:0005634
 name: nucleus
 namespace: cellular_component
@@ -528,9 +497,9 @@ synonym: "transcription, DNA-dependent" EXACT []
 xref: Wikipedia:Transcription_(genetics)
 is_a: GO:0032774 ! RNA biosynthetic process
 is_a: GO:0034645 ! cellular macromolecule biosynthetic process
-relationship: part_of GO:0010467 ! gene expression
-relationship: BFO_0000066 ncro:0000015 ! animal_study_model
 relationship: BFO_0000066 CL:0000000 ! cell
+relationship: BFO_0000066 ncro:0000015 ! animal_study_model
+relationship: part_of GO:0010467 ! gene expression
 property_value: IAO:0000412 http://purl.obolibrary.org/obo/go.owl
 
 [Term]
@@ -4758,6 +4727,11 @@ created_by: HeZhang
 creation_date: 2013-10-07T00:31:14Z
 
 [Term]
+id: ncro:0000701
+name: mouse_miRNA
+is_a: ncro:0000009 ! mammalian_miRNA
+
+[Term]
 id: ncro:0000801
 name: TE_juxtaposition
 is_a: SO:0001411 ! biological_region
@@ -4783,11 +4757,6 @@ name: negative_strand_insertion
 is_a: ncro:0000803 ! TE_insertion
 created_by: HeZhang
 creation_date: 2013-10-25T16:17:26Z
-
-[Term]
-id: ncro:0000701
-name: mouse_miRNA
-is_a: ncro:0000009 ! mammalian_miRNA
 
 [Term]
 id: ncro:0000810
@@ -21673,15 +21642,47 @@ is_a: ncro:0001667 ! miRNA_gene_family
 relationship: ncro:is_about_grouped_miRNA ncro:0002692 ! hsa-mir-4523
 
 [Term]
+id: OBI:0100026
+name: organism
+namespace: OBI
+def: "A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs." []
+xref: NCIt:C14250
+xref: SNOMEDCT:410607006
+is_a: snap:MaterialEntity ! material_entity
+relationship: BFO_0000112 DOID:4 ! disease
+property_value: IAO:0000111 "organism" xsd:string
+property_value: IAO:0000112 "animal" xsd:string
+property_value: IAO:0000112 "fungus" xsd:string
+property_value: IAO:0000112 "plant" xsd:string
+property_value: IAO:0000112 "virus" xsd:string
+property_value: IAO:0000114 IAO:0000122
+property_value: IAO:0000116 "10/21/09: This is a placeholder term, that should ideally be imported from the NCBI taxonomy, but the high level hierarchy there does not suit our needs (includes plasmids and 'other organisms')" xsd:string
+property_value: IAO:0000116 "13-02-2009:\\nOBI doesn't take position as to  when an organism starts or ends being an organism - e.g. sperm, foetus.\\nThis issue is outside the scope of OBI." xsd:string
+property_value: IAO:0000117 "GROUP: OBI Biomaterial Branch" xsd:string
+property_value: IAO:0000119 "WEB: http://en.wikipedia.org/wiki/Organism" xsd:string
+
+[Term]
+id: OBI_0100047
+name: processed material
+namespace: OBI
+is_a: snap:MaterialEntity ! material_entity
+
+[Term]
+id: OBI_0100060
+name: cultured cell population
+namespace: OBI
+is_a: OBI_0100047 ! processed material
+
+[Term]
 id: PR:000000001
 name: protein
 namespace: protein
 def: "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA." [PRO:DAN, PRO:WCB]
 comment: Proteins descended from a common ancestor can be classified into families and superfamilies composed of products of evolutionarily-related genes. The domain architecture of a protein is described by the order of its constituent domains. Proteins with the same domains in the same order are defined as homeomorphic [PRO:WCB].
 is_a: PR:000018263 ! amino acid chain
+relationship: BFO_0000066 CL:0000000 ! cell
 relationship: ncro:regulate_miRNA_transcription ncro:0000014 ! transcription_of_miRNA
 relationship: OBO_REL:participates_in ncro:0000011 ! protein_miRNA_promoter_binding
-relationship: BFO_0000066 CL:0000000 ! cell
 
 [Term]
 id: PR:000018263
@@ -24133,10 +24134,14 @@ xref: ZFA:0001477
 is_a: snap:ObjectAggregate ! object_aggregate
 
 [Typedef]
+id: BFO_0000066
+name: occurs_in
+namespace: bfo
+
+[Typedef]
 id: BFO_0000112
 name: has disposition at some time
 namespace: bfo
- 
 
 [Typedef]
 id: has_integral_part
@@ -24237,11 +24242,6 @@ range: SO:0000276 ! miRNA
 inverse_of: ncro:has_predicted_target ! has_predicted_target
 created_by: He_Zhang
 creation_date: 2015-05-17T07:52:46Z
-
-[Typedef]
-id: BFO_0000066
-name: occurs_in
-namespace: bfo
 
 [Typedef]
 id: ncro:miRNA_expressed_in_tissue
