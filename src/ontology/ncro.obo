@@ -21657,6 +21657,27 @@ is_a: ncro:0001667 ! miRNA_gene_family
 relationship: ncro:is_about_grouped_miRNA ncro:0002692 ! hsa-mir-4523
 
 [Term]
+id: ncro:0003282
+name: has-miR-125b-5p
+namespace: NonCoding_RNA
+xref: miRBase:MIMAT0000423
+is_a: ncro:0000810 ! human_miRNA
+
+[Term]
+id: ncro:0003283
+name: has-miR-125b-1-3p
+namespace: NonCoding_RNA
+xref: miRBase:MIMAT0004592
+is_a: ncro:0000810 ! human_miRNA
+
+[Term]
+id: ncro:0003284
+name: has-miR-125b-2-3p
+namespace: NonCoding_RNA
+xref: miRBase:MIMAT0004603
+is_a: ncro:0000810 ! human_miRNA 
+
+[Term]
 id: PR:000000001
 name: protein
 namespace: protein
