@@ -1,4 +1,4 @@
-# NCRO
+# non-coding RNA (ncRNA) Ontology
 
 The NCRO is a reference ontology in the non-coding RNA (ncRNA) field, aiming to provide a common set of terms and relations that will facilitate the curation, analysis, exchange, sharing, and management of ncRNA structural, functional, and sequence data. Domain includes both natural and engineered RNA.
 
