@@ -1,7 +1,7 @@
 format-version: 1.2
-date: 05:06:2015 11:03
-saved-by: He Zhang
-auto-generated-by: OBO-Edit 2.3
+date: 09:06:2015 15:53
+saved-by: Jingshan Huang
+auto-generated-by: OBO-Edit 2.2
 subsetdef: biosapiens "biosapiens protein feature ontology"
 subsetdef: Cross_product_review "Involved_in"
 subsetdef: DBVAR "database of genomic structural variation"
@@ -53,6 +53,14 @@ def: "Something that exists as a particular and discrete unit" []
 creation_date: 2013-09-27T11:52:15Z
 
 [Term]
+id: C14250
+name: Organism
+namespace: NCIt
+def: "A living entity" []
+xref: SNOMEDCT:410607006
+is_a: snap:IndependentContinuant ! independent_continuant
+
+[Term]
 id: CHEBI:23367
 name: molecular entity
 namespace: chebi_ontology
@@ -67,6 +75,36 @@ def: "When two or more amino acids combine to form a peptide, the elements of wa
 synonym: "amino acid residue" EXACT []
 synonym: "protein residue" NARROW [PRO:DAN]
 is_a: BFO:0000024 ! fiat object
+
+[Term]
+id: OBI_0100047
+name: processed material
+namespace: OBI
+is_a: snap:MaterialEntity ! material_entity
+
+[Term]
+id: OBI_0100060
+name: cultured cell population
+namespace: OBI
+is_a: OBI_0100047 ! processed material
+
+[Term]
+id: CLO_0000031
+name: cell line
+namespace: CLO
+is_a: OBI_0100060 ! cultured cell population
+relationship: ncro:is_model_of_disease DOID:4 ! disease
+
+[Term]
+id: DOID:4
+name: disease
+namespace: disease_ontology
+def: "A disease is a disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism." [url:http\://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf]
+is_a: span:Process ! process
+xref: MSH:D004194
+xref: NCIt:C2991
+xref: SNOMEDCT_2010_1_31:64572001
+xref: UMLS_CUI:C0012634
 
 [Term]
 id: GO:0000122
@@ -319,6 +357,20 @@ xref: Reactome:REACT_6315
 is_a: GO:0003674 ! molecular_function
 relationship: part_of GO:0006810 ! transport
 property_value: IAO:0000412 http://purl.obolibrary.org/obo/go.owl
+
+[Term]
+id: GO:0005488
+name: binding
+namespace: molecular_function
+def: "The selective, non-covalent, often stoichiometric, interaction of a molecule with one or more specific sites on another molecule." [GOC:ceb, GOC:mah, ISBN:0198506732]
+comment: Note that this term is in the subset of terms that should not be used for direct, manual gene product annotation. Please choose a more specific child term, or request a new one if no suitable term is available. For ligands that bind to signal transducing receptors, consider the molecular function term 'receptor binding ; GO:0005102' and its children.
+subset: gocheck_do_not_manually_annotate
+subset: goslim_pir
+subset: goslim_plant
+subset: gosubset_prok
+synonym: "ligand" NARROW []
+xref: Wikipedia:Binding_(molecular)
+is_a: GO:0003674 ! molecular_function
 
 [Term]
 id: GO:0005575
@@ -669,6 +721,7 @@ is_a: GO:0034645 ! cellular macromolecule biosynthetic process
 is_a: GO:0044267 ! cellular protein metabolic process
 relationship: has_part GO:0006414 ! translational elongation
 relationship: part_of GO:0010467 ! gene expression
+relationship: RO_0002234 PR:000000001 ! protein
 property_value: IAO:0000412 http://purl.obolibrary.org/obo/go.owl
 
 [Term]
@@ -4242,10 +4295,79 @@ relationship: OBO_REL:derives_from ncro:0000001 ! miRNA_target_gene_primary_tran
 
 [Term]
 id: ncro:0000003
-name: miRNA_and_miRNA_target_gene_assumption
-is_a: IAO:0000030 ! information content entity
+name: miRNA_and_target_gene_binding
+is_a: GO:0005488 ! binding
 relationship: ncro:is_about_miRNA SO:0000276 ! miRNA
 relationship: ncro:is_about_miRNA_target_gene ncro:0000025 ! miRNA_target_gene
+
+[Term]
+id: ncro:0000004
+name: fly_miRNA
+is_a: ncro:0000008 ! non_mammalian_miRNA
+
+[Term]
+id: ncro:0000005
+name: c_elegans_miRNA
+is_a: ncro:0000008 ! non_mammalian_miRNA
+
+[Term]
+id: ncro:0000006
+name: bacterial_miRNA
+is_a: ncro:0000008 ! non_mammalian_miRNA
+
+[Term]
+id: ncro:0000007
+name: virus_miRNA
+is_a: ncro:0000008 ! non_mammalian_miRNA
+
+[Term]
+id: ncro:0000008
+name: non_mammalian_miRNA
+is_a: SO:0000276 ! miRNA
+
+[Term]
+id: ncro:0000009
+name: mammalian_miRNA
+is_a: SO:0000276 ! miRNA
+
+[Term]
+id: ncro:0000010
+name: miRNA_expression
+is_a: GO:0008152 ! metabolic process
+relationship: ncro:miRNA_expressed_in_tissue UBERON:0000479 ! tissue
+relationship: ncro:regulate_mRNA_translation GO:0006412 ! translation
+relationship: OBO_REL:has_participant SO:0000276 ! miRNA
+
+[Term]
+id: ncro:0000011
+name: protein_miRNA_promoter_binding
+is_a: GO:0005488 ! binding
+relationship: OBO_REL:precedes ncro:0000013 ! miRNA_transcription_initiation
+
+[Term]
+id: ncro:0000012
+name: promoter_of_miRNA
+is_a: SO:0000167 ! promoter
+relationship: OBO_REL:participates_in ncro:0000011 ! protein_miRNA_promoter_binding
+relationship: OBO_REL:participates_in ncro:0000013 ! miRNA_transcription_initiation
+relationship: OBO_REL:participates_in ncro:0000014 ! transcription_of_miRNA
+
+[Term]
+id: ncro:0000013
+name: miRNA_transcription_initiation
+is_a: GO:0016070 ! RNA metabolic process
+relationship: OBO_REL:precedes ncro:0000014 ! transcription_of_miRNA
+
+[Term]
+id: ncro:0000014
+name: transcription_of_miRNA
+is_a: GO:0006351 ! transcription, DNA-templated
+
+[Term]
+id: ncro:0000015
+name: animal_study_model
+is_a: C14250 ! Organism
+relationship: ncro:is_model_of_disease DOID:4 ! disease
 
 [Term]
 id: ncro:0000025
@@ -4369,34 +4491,17 @@ created_by: HeZhang
 creation_date: 2013-09-29T18:30:22Z
 
 [Term]
-id: ncro:0000052
-name: organism
-def: "Any contiguous living system (such as animal, fungus, micro-organism, or plant)" []
-is_a: snap:Object ! object
-created_by: HeZhang
-creation_date: 2013-09-29T18:41:01Z
-
-[Term]
 id: ncro:0000091
 name: virus
 def: "Small infectious agent that replicates only inside the living cells of other organisms" []
-is_a: ncro:0000052 ! organism
+is_a: C14250 ! Organism
 created_by: HeZhang
 creation_date: 2013-10-01T23:27:46Z
 
 [Term]
-id: ncro:0000097
-name: tissue
-def: "An ensemble of similar cells from the same origin that together carry out a specific function" []
-comment: "A collection of cells organized by a common function"
-is_a: snap:ObjectAggregate ! object_aggregate
-created_by: HeZhang
-creation_date: 2013-10-01T23:30:47Z
-
-[Term]
 id: ncro:0000098
 name: adult_tissue
-is_a: ncro:0000097 ! tissue
+is_a: UBERON:0000479 ! tissue
 created_by: HeZhang
 creation_date: 2013-10-01T23:32:05Z
 
@@ -4405,7 +4510,7 @@ id: ncro:0000099
 name: embryonic_tissue
 def: "Tissue in an embryo" []
 comment: "Tissues existing in the early embryonic stages of development"
-is_a: ncro:0000097 ! tissue
+is_a: UBERON:0000479 ! tissue
 created_by: HeZhang
 creation_date: 2013-10-01T23:32:05Z
 
@@ -4617,7 +4722,7 @@ creation_date: 2013-10-04T20:24:14Z
 id: ncro:0000481
 name: cellular_organism
 def: "An organism of microscopic or submicroscopic size, especially a bacterium or protozoan" []
-is_a: ncro:0000052 ! organism
+is_a: C14250 ! Organism
 creation_date: 2013-10-07T00:19:58Z
 
 [Term]
@@ -4664,9 +4769,14 @@ created_by: HeZhang
 creation_date: 2013-10-25T16:17:26Z
 
 [Term]
+id: ncro:0000701
+name: mouse_miRNA
+is_a: ncro:0000009 ! mammalian_miRNA
+
+[Term]
 id: ncro:0000810
 name: human_miRNA
-is_a: SO:0000276 ! miRNA
+is_a: ncro:0000009 ! mammalian_miRNA
 created_by: He_Zhang
 creation_date: 2015-05-16T19:26:04Z
 
@@ -21553,6 +21663,8 @@ namespace: protein
 def: "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA." [PRO:DAN, PRO:WCB]
 comment: Proteins descended from a common ancestor can be classified into families and superfamilies composed of products of evolutionarily-related genes. The domain architecture of a protein is described by the order of its constituent domains. Proteins with the same domains in the same order are defined as homeomorphic [PRO:WCB].
 is_a: PR:000018263 ! amino acid chain
+relationship: ncro:regulate_miRNA_transcription ncro:0000014 ! transcription_of_miRNA
+relationship: OBO_REL:participates_in ncro:0000011 ! protein_miRNA_promoter_binding
 
 [Term]
 id: PR:000018263
@@ -22223,8 +22335,8 @@ synonym: "micro RNA" EXACT []
 synonym: "microRNA" EXACT []
 xref: http://en.wikipedia.org/wiki/MiRNA "wiki"
 is_a: SO:0000370 ! small_regulatory_ncRNA
-relationship: OBO_REL:derives_from SO:0000647 ! miRNA_primary_transcript
 relationship: ncro:has_predicted_target SO:0000704 ! gene
+relationship: OBO_REL:derives_from SO:0000647 ! miRNA_primary_transcript
 
 [Term]
 id: SO:0000280
@@ -22785,6 +22897,7 @@ comment: "This term is mapped to MGED. Do not obsolete without consulting MGED o
 xref: http://en.wikipedia.org/wiki/Gene "wiki"
 is_a: SO:0001411 ! biological_region
 relationship: ncro:is_predicted_target_of SO:0000276 ! miRNA
+relationship: OBO_REL:participates_in GO:0006351 ! transcription, DNA-templated
 created_by: HeZhang
 creation_date: 2013-09-28T19:09:24Z
 
@@ -23955,33 +24068,52 @@ property_value: has_example "the moment of death" xsd:string
 property_value: has_example "the time it takes to run a marathon" xsd:string
 creation_date: 2013-09-28T18:35:33Z
 
-[Typedef]
-id: OBO_REL:derives_from
-name: derives_from
-namespace: relationship
-alt_id: OBO_REL:0000015
-is_transitive: true
-inverse_of_on_instance_level: OBO_REL:derived_into
+[Term]
+id: UBERON:0000062
+name: organ
+namespace: uberon
+def: "Anatomical structure that performs a specific function or group of functions [WP]." [http://en.wikipedia.org/wiki/Organ_(anatomy)]
+synonym: "anatomical unit" RELATED []
+synonym: "body organ" RELATED []
+synonym: "element" RELATED [UBERON:cjm]
+xref: NCIt:C13018
+xref: SNOMEDCT:442083009
+is_a: snap:MaterialEntity ! material_entity
+relationship: OBO_REL:part_of C14250 ! Organism
 
-[Typedef]
-id: OBO_REL:derived_into
-name: derived_into
-namespace: relationship
-alt_id: OBO_REL:0000016
-is_transitive: true
-inverse_of_on_instance_level: OBO_REL:derives_from
-
-[Typedef]
-id: ncro:is_about_miRNA
-name: is_about_miRNA
-domain: IAO:0000030 ! information content entity
-range: SO:0000276 ! miRNA
-
-[Typedef]
-id: ncro:is_about_miRNA_target_gene
-name: is_about_miRNA_target_gene
-domain: IAO:0000030 ! information content entity
-range: ncro:0000025 ! miRNA_target_gene
+[Term]
+id: UBERON:0000479
+name: tissue
+namespace: uberon
+def: "Multicellular anatomical structure that consists of many cells of one or a few types, arranged in an extracellular matrix such that their long-range organisation is at least partly a repetition of their short-range organisation." [CARO:0000043]
+synonym: "portion of tissue" EXACT [CARO:0000043]
+synonym: "simple tissue" NARROW [AEO:0000043]
+synonym: "tissue portion" EXACT []
+xref: AAO:0000607
+xref: AAO:0010054
+xref: AEO:0000043
+xref: BILA:0000043
+xref: birnlex:19
+xref: CALOHA:TS-2090
+xref: CARO:0000043
+xref: EHDAA2:0003043
+xref: EMAPA:35868
+xref: FBbt:00007003
+xref: FMA:9637
+xref: galen:Tissue
+xref: HAO:0000043
+xref: http://linkedlifedata.com/resource/umls/id/C0040300
+xref: http://ncicb.nci.nih.gov/xml/owl/EVS/Tissue
+xref: MA:0003002
+xref: MESH:A10
+xref: TAO:0001477
+xref: TGMA:0001844
+xref: UMLS:C0040300 {source="ncithesaurus:Tissue"}
+xref: VHOG:0001757
+xref: WBbt:0005729
+xref: XAO:0003040
+xref: ZFA:0001477
+is_a: snap:ObjectAggregate ! object_aggregate
 
 [Typedef]
 id: has_integral_part
@@ -24042,6 +24174,18 @@ created_by: He_Zhang
 creation_date: 2015-05-16T19:28:03Z
 
 [Typedef]
+id: ncro:is_about_miRNA
+name: is_about_miRNA
+domain: IAO:0000030 ! information content entity
+range: SO:0000276 ! miRNA
+
+[Typedef]
+id: ncro:is_about_miRNA_target_gene
+name: is_about_miRNA_target_gene
+domain: IAO:0000030 ! information content entity
+range: ncro:0000025 ! miRNA_target_gene
+
+[Typedef]
 id: ncro:is_classified_into_gene_family_group
 name: is_classified_into_gene_family_group
 domain: SO:0000276 ! miRNA
@@ -24057,6 +24201,12 @@ domain: ncro:0000025 ! miRNA_target_gene
 range: ncro:0000002 ! miRNA_target_gene_mRNA
 
 [Typedef]
+id: ncro:is_model_of_disease
+name: is_model_of_disease
+domain: snap:IndependentContinuant ! independent_continuant
+range: DOID:4 ! disease
+
+[Typedef]
 id: ncro:is_predicted_target_of
 name: is_predicted_target_of
 domain: SO:0000704 ! gene
@@ -24064,6 +24214,24 @@ range: SO:0000276 ! miRNA
 inverse_of: ncro:has_predicted_target ! has_predicted_target
 created_by: He_Zhang
 creation_date: 2015-05-17T07:52:46Z
+
+[Typedef]
+id: ncro:miRNA_expressed_in_tissue
+name: miRNA_expressed_in_tissue
+domain: ncro:0000010 ! miRNA_expression
+range: UBERON:0000479 ! tissue
+
+[Typedef]
+id: ncro:regulate_miRNA_transcription
+name: regulate_miRNA_transcription
+domain: PR:000000001 ! protein
+range: ncro:0000014 ! transcription_of_miRNA
+
+[Typedef]
+id: ncro:regulate_mRNA_translation
+name: regulate_mRNA_translation
+domain: ncro:0000010 ! miRNA_expression
+range: GO:0006412 ! translation
 
 [Typedef]
 id: negatively_regulates
@@ -24113,6 +24281,22 @@ name: contains
 namespace: relationship
 alt_id: OBO_REL:0000011
 inverse_of_on_instance_level: OBO_REL:contained_in
+
+[Typedef]
+id: OBO_REL:derived_into
+name: derived_into
+namespace: relationship
+alt_id: OBO_REL:0000016
+is_transitive: true
+inverse_of_on_instance_level: OBO_REL:derives_from
+
+[Typedef]
+id: OBO_REL:derives_from
+name: derives_from
+namespace: relationship
+alt_id: OBO_REL:0000015
+is_transitive: true
+inverse_of_on_instance_level: OBO_REL:derived_into
 
 [Typedef]
 id: OBO_REL:has_agent
@@ -24220,6 +24404,8 @@ id: OBO_REL:participates_in
 name: participates_in
 namespace: relationship
 alt_id: OBO_REL:0000020
+domain: snap:MaterialEntity ! material_entity
+range: span:Process ! process
 inverse_of_on_instance_level: OBO_REL:has_participant
 
 [Typedef]
@@ -24294,10 +24480,14 @@ xref: RO:0002211
 transitive_over: part_of ! part_of
 
 [Typedef]
+id: RO_0002234
+name: has output
+namespace: relationship
+
+[Typedef]
 id: similar_to
 name: similar_to
 namespace: sequence
 subset: SOFA
 is_symmetric: true
-
 
