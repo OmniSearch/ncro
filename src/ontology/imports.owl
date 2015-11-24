@@ -140,12 +140,12 @@
         <oboInOwl:id rdf:datatype="&xsd;string">occurs_in</oboInOwl:id>
         <obo:IAO_0000412 rdf:resource="&obo;go.owl"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&obo;BFO_0000066"/>
             <rdf:Description rdf:about="&obo;ncro-obo-WorkingVersion-06302015#part_of"/>
+            <rdf:Description rdf:about="&obo;BFO_0000066"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&obo;ncro-obo-WorkingVersion-06302015#part_of"/>
             <rdf:Description rdf:about="&obo;BFO_0000066"/>
+            <rdf:Description rdf:about="&obo;ncro-obo-WorkingVersion-06302015#part_of"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -526,8 +526,8 @@
         <IAO_0000117 rdf:datatype="&xsd;string">He_Zhang</IAO_0000117>
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:is_about_grouped_miRNA</oboInOwl:id>
+        <rdfs:domain rdf:resource="&obo;NCRO_0001667"/>
         <rdfs:range rdf:resource="&obo;SO_0000276"/>
-        <rdfs:domain rdf:resource="&obo;ncro_0001667"/>
     </owl:ObjectProperty>
     
 
@@ -551,7 +551,7 @@
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:is_about_miRNA_target_gene</oboInOwl:id>
         <rdfs:domain rdf:resource="&obo;IAO_0000030"/>
-        <rdfs:range rdf:resource="&obo;ncro_0000025"/>
+        <rdfs:range rdf:resource="&obo;NCRO_0000025"/>
     </owl:ObjectProperty>
     
 
@@ -564,8 +564,8 @@
         <IAO_0000117 rdf:datatype="&xsd;string">He_Zhang</IAO_0000117>
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:is_classified_into_gene_family_group</oboInOwl:id>
+        <rdfs:range rdf:resource="&obo;NCRO_0001667"/>
         <rdfs:domain rdf:resource="&obo;SO_0000276"/>
-        <rdfs:range rdf:resource="&obo;ncro_0001667"/>
         <owl:inverseOf rdf:resource="&obo;ncro#_is_about_grouped_miRNA"/>
     </owl:ObjectProperty>
     
@@ -574,8 +574,8 @@
     <!-- http://purl.obolibrary.org/obo/ncro#_is_gene_template_of_mRNA -->
 
     <owl:ObjectProperty rdf:about="&obo;ncro#_is_gene_template_of_mRNA">
-        <rdfs:range rdf:resource="&obo;ncro_0000002"/>
-        <rdfs:domain rdf:resource="&obo;ncro_0000025"/>
+        <rdfs:range rdf:resource="&obo;NCRO_0000002"/>
+        <rdfs:domain rdf:resource="&obo;NCRO_0000025"/>
     </owl:ObjectProperty>
     
 
@@ -612,8 +612,8 @@
         <rdfs:label rdf:datatype="&xsd;string">miRNA_expressed_in_tissue</rdfs:label>
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:miRNA_expressed_in_tissue</oboInOwl:id>
+        <rdfs:domain rdf:resource="&obo;NCRO_0000010"/>
         <rdfs:range rdf:resource="&obo;UBERON_0000479"/>
-        <rdfs:domain rdf:resource="&obo;ncro_0000010"/>
     </owl:ObjectProperty>
     
 
@@ -625,7 +625,7 @@
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:regulate_mRNA_translation</oboInOwl:id>
         <rdfs:range rdf:resource="&obo;GO_0006412"/>
-        <rdfs:domain rdf:resource="&obo;ncro_0000010"/>
+        <rdfs:domain rdf:resource="&obo;NCRO_0000010"/>
     </owl:ObjectProperty>
     
 
@@ -636,8 +636,8 @@
         <rdfs:label rdf:datatype="&xsd;string">regulate_miRNA_transcription</rdfs:label>
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">NonCoding_RNA</oboInOwl:hasOBONamespace>
         <oboInOwl:id rdf:datatype="&xsd;string">ncro:regulate_miRNA_transcription</oboInOwl:id>
+        <rdfs:range rdf:resource="&obo;NCRO_0000014"/>
         <rdfs:domain rdf:resource="&obo;PR_000000001"/>
-        <rdfs:range rdf:resource="&obo;ncro_0000014"/>
     </owl:ObjectProperty>
     
 
@@ -1511,8 +1511,8 @@
         <rdfs:subClassOf rdf:resource="&obo;GO_0044267"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;RO_0002234"/>
-                <owl:someValuesFrom rdf:resource="&obo;PR_000000001"/>
+                <owl:onProperty rdf:resource="&obo;part_of"/>
+                <owl:someValuesFrom rdf:resource="&obo;GO_0010467"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1523,8 +1523,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;part_of"/>
-                <owl:someValuesFrom rdf:resource="&obo;GO_0010467"/>
+                <owl:onProperty rdf:resource="&obo;RO_0002234"/>
+                <owl:someValuesFrom rdf:resource="&obo;PR_000000001"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <oboInOwl:id rdf:datatype="&xsd;string">GO:0006412</oboInOwl:id>
@@ -6733,6 +6733,42 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/NCRO_0000002 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0000002"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0000010 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0000010"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0000011 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0000011"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0000014 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0000014"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0000025 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0000025"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0001667 -->
+
+    <owl:Class rdf:about="&obo;NCRO_0001667"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OBI_0100026 -->
 
     <owl:Class rdf:about="&obo;OBI_0100026">
@@ -6768,13 +6804,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;ncro#_regulate_miRNA_transcription"/>
-                <owl:someValuesFrom rdf:resource="&obo;ncro_0000014"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCRO_0000014"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBO_REL#_participates_in"/>
-                <owl:someValuesFrom rdf:resource="&obo;ncro_0000011"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCRO_0000011"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA.</obo:IAO_0000115>
@@ -7219,14 +7255,14 @@
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">sequence</oboInOwl:hasOBONamespace>
     </owl:Class>
     <owl:Axiom>
-        <rdfs:label rdf:datatype="&xsd;string">wiki</rdfs:label>
-        <owl:annotatedTarget rdf:datatype="&xsd;string">http://en.wikipedia.org/wiki/Nucleotide_deletion</owl:annotatedTarget>
+        <rdfs:label rdf:datatype="&xsd;string">Deletion</rdfs:label>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">loinc:LA6692-3</owl:annotatedTarget>
         <owl:annotatedSource rdf:resource="&obo;SO_0000159"/>
         <owl:annotatedProperty rdf:resource="&oboInOwl;hasDbXref"/>
     </owl:Axiom>
     <owl:Axiom>
-        <rdfs:label rdf:datatype="&xsd;string">Deletion</rdfs:label>
-        <owl:annotatedTarget rdf:datatype="&xsd;string">loinc:LA6692-3</owl:annotatedTarget>
+        <rdfs:label rdf:datatype="&xsd;string">wiki</rdfs:label>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">http://en.wikipedia.org/wiki/Nucleotide_deletion</owl:annotatedTarget>
         <owl:annotatedSource rdf:resource="&obo;SO_0000159"/>
         <owl:annotatedProperty rdf:resource="&oboInOwl;hasDbXref"/>
     </owl:Axiom>
@@ -8388,14 +8424,14 @@
         <rdfs:subClassOf rdf:resource="&obo;SO_0001411"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;ncro#_is_predicted_target_of"/>
-                <owl:someValuesFrom rdf:resource="&obo;SO_0000276"/>
+                <owl:onProperty rdf:resource="&obo;OBO_REL#_participates_in"/>
+                <owl:someValuesFrom rdf:resource="&obo;GO_0006351"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBO_REL#_participates_in"/>
-                <owl:someValuesFrom rdf:resource="&obo;GO_0006351"/>
+                <owl:onProperty rdf:resource="&obo;ncro#_is_predicted_target_of"/>
+                <owl:someValuesFrom rdf:resource="&obo;SO_0000276"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">&quot;This term is mapped to MGED. Do not obsolete without consulting MGED ontology. A gene may be considered as a unit of inheritance.&quot;</rdfs:comment>
@@ -9959,12 +9995,6 @@
 
     <owl:Class rdf:about="&obo;UBERON_0000062">
         <rdfs:label rdf:datatype="&xsd;string">organ</rdfs:label>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBO_REL#_part_of"/>
-                <owl:someValuesFrom rdf:resource="&obo;ncro-obo-WorkingVersion-06302015#C14250"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">Anatomical structure that performs a specific function or group of functions [WP].</obo:IAO_0000115>
         <oboInOwl:hasDbXref rdf:datatype="&xsd;string">NCIt:C13018</oboInOwl:hasDbXref>
         <oboInOwl:hasDbXref rdf:datatype="&xsd;string">SNOMEDCT:442083009</oboInOwl:hasDbXref>
@@ -10012,48 +10042,6 @@
         <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">tissue portion</oboInOwl:hasExactSynonym>
         <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">uberon</oboInOwl:hasOBONamespace>
     </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0000002 -->
-
-    <owl:Class rdf:about="&obo;ncro_0000002"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0000010 -->
-
-    <owl:Class rdf:about="&obo;ncro_0000010"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0000011 -->
-
-    <owl:Class rdf:about="&obo;ncro_0000011"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0000014 -->
-
-    <owl:Class rdf:about="&obo;ncro_0000014"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0000025 -->
-
-    <owl:Class rdf:about="&obo;ncro_0000025"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro_0001667 -->
-
-    <owl:Class rdf:about="&obo;ncro_0001667"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#C14250 -->
-
-    <owl:Class rdf:about="&obo;ncro-obo-WorkingVersion-06302015#C14250"/>
     
 
 
