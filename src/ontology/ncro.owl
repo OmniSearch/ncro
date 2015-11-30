@@ -106,7 +106,6 @@
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CHEBI_17843">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/CHEBI_8762"/>
         <obo:IAO_0000118 xml:lang="en">tRNA</obo:IAO_0000118>
     </rdf:Description>
     
@@ -116,7 +115,6 @@
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CHEBI_18111">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/CHEBI_8762"/>
         <obo:IAO_0000118 xml:lang="en">rRNA</obo:IAO_0000118>
     </rdf:Description>
     
@@ -143,7 +141,6 @@
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CHEBI_74035">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/CHEBI_8762"/>
         <obo:IAO_0000118 xml:lang="en">snRNA</obo:IAO_0000118>
     </rdf:Description>
     
@@ -38228,6 +38225,7 @@
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CHEBI_8762"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCRO_0004004"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCRO_0004005"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/SO_0000276"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
