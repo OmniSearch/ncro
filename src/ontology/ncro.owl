@@ -38176,6 +38176,25 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/SO_0000276 -->
+
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/SO_0000276">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/SO_0000370"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000232>Removed axiom &apos;derives_from some miRNA_primary_transcript&apos; pending review of status of SO terms. Changed relation of small regulatory ncRNA (superclass) into is about relationship</obo:IAO_0000232>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/UBERON_0000062 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/UBERON_0000062">

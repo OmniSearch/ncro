@@ -126,12 +126,12 @@
         <oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">occurs_in</oboInOwl:id>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#part_of"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000066"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#part_of"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000066"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#part_of"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000066"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -1516,8 +1516,8 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0044267"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/part_of"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0010467"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0006414"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1528,8 +1528,8 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0006414"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/part_of"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0010467"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GO:0006412</oboInOwl:id>
@@ -5408,14 +5408,14 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_1902582"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0006405"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#part_of"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0071166"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015#part_of"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0071166"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0006405"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009-12-16T10:13:01Z</oboInOwl:creation_date>
@@ -7441,19 +7441,6 @@ Previous. An information content entity is a non-realizable information entity t
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/SO_0000276">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">miRNA</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/SO_0000370"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/ncro#_has_predicted_target"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/SO_0000704"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBO_REL#_derives_from"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/SO_0000647"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SO:0000276</oboInOwl:id>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small, ~22-nt, RNA molecule that is the endogenous transcript of a miRNA gene. Micro RNAs are produced from precursor molecules (SO:0000647) that can form local hairpin structures, which ordinarily are processed (via the Dicer pathway) such that a single miRNA molecule accumulates from one arm of a hairpin precursor molecule. Micro RNAs may trigger the cleavage of their target molecules or act as translational repressors.</obo:IAO_0000115>
         <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://en.wikipedia.org/wiki/MiRNA</oboInOwl:hasDbXref>
