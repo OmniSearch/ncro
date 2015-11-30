@@ -38126,6 +38126,7 @@
         <obo:IAO_0000116 xml:lang="en">This somewhat arbitrary limit distinguishes long ncRNAs from small regulatory RNAs such as microRNAs (miRNAs), short interfering RNAs (siRNAs), Piwi-interacting RNAs (piRNAs), small nucleolar RNAs (snoRNAs), and other short RNAs</obo:IAO_0000116>
         <obo:IAO_0000119 xml:lang="en">WEB:https://en.wikipedia.org/w/index.php?title=Long_non-coding_RNA&amp;oldid=687562040#Long non-coding RNA</obo:IAO_0000119>
         <obo:IAO_0000118 xml:lang="en">lncRNA</obo:IAO_0000118>
+        <rdfs:seeAlso rdf:resource="https://sourceforge.net/p/chebi/curator-requests/2494/"/>
     </owl:Class>
     
 
@@ -38140,6 +38141,7 @@
         <obo:IAO_0000119 xml:lang="en">WEB:https://en.wikipedia.org/w/index.php?title=Special:CiteThisPage&amp;page=Small_interfering_RNA&amp;id=685334024#Small_interfering_RNA</obo:IAO_0000119>
         <obo:IAO_0000118 xml:lang="en">siRNA</obo:IAO_0000118>
         <obo:IAO_0000115 xml:lang="en">small interfering RNA (siRNA) is a class of double-stranded RNA molecules, 20-25 base pairs in length. siRNA plays many roles, but it is most notable in the RNA interference (RNAi) pathway, where it interferes with thes expression of specific genes with complementary nucleotide sequences.</obo:IAO_0000115>
+        <rdfs:seeAlso rdf:resource="https://sourceforge.net/p/chebi/curator-requests/2494/"/>
     </owl:Class>
     
 
@@ -38188,6 +38190,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000232>Removed axiom &apos;derives_from some miRNA_primary_transcript&apos; pending review of status of SO terms. Changed relation of small regulatory ncRNA (superclass) into is about relationship</obo:IAO_0000232>
+        <rdfs:seeAlso rdf:resource="https://sourceforge.net/p/chebi/curator-requests/2494/"/>
     </rdf:Description>
     
 
