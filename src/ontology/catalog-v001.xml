@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <group  prefer="public" xml:base="">
-        <uri name="http://purl.obolibrary.org/obo/ncro/imports.owl" uri="imports.owl"/> 
-        <uri name="http://purl.obolibrary.org/obo/ncro.owl" uri="ncro.owl"/>
+    <group prefer="public" xml:base="">
+      <uri  name="http://purl.obolibrary.org/obo/ncro/chebi-imports.owl" uri="chebi-imports.owl"/>
+      <uri name="http://purl.obolibrary.org/obo/ncro/imports.owl" uri="imports.owl"/>
+      <uri name="http://purl.obolibrary.org/obo/ncro.owl" uri="ncro.owl"/>
     </group>
 </catalog>

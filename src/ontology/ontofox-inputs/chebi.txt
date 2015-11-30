@@ -1,0 +1,28 @@
+[URI of the OWL(RDF/XML) output file]
+http://purl.obolibrary.org/obo/ncro/ontofox-imports.owl
+
+[Source ontology]
+CHEBI
+
+[Low level source term URIs]
+http://purl.obolibrary.org/obo/CHEBI_33697
+http://purl.obolibrary.org/obo/CHEBI_18111
+http://purl.obolibrary.org/obo/CHEBI_74035
+http://purl.obolibrary.org/obo/CHEBI_17843
+http://purl.obolibrary.org/obo/CHEBI_8762
+
+
+[Top level source term URIs and target direct superclass URIs]
+
+
+
+[Source term retrieval setting]
+includeNoIntermediates
+
+[Source annotation URIs]
+includeAxioms
+http://www.w3.org/2000/01/rdf-schema#label
+http://purl.obolibrary.org/obo/IAO_0000115 #iao:definition
+http://purl.obolibrary.org/obo/IAO_0000118 #iao:alternative term
+
+[Source annotation URIs to be excluded]
