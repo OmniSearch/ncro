@@ -14,8 +14,8 @@
         <dc:contributor xml:lang="en">Jingshan Huang</dc:contributor>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/chebi-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/imports.owl"/>
         <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncro.owl"/>
     </owl:Ontology>
     
