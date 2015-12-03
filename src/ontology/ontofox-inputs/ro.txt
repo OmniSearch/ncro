@@ -1,0 +1,38 @@
+[URI of the OWL(RDF/XML) output file]
+http://purl.obolibrary.org/obo/ncro/ro-imports.owl
+
+[Source ontology]
+RO
+
+[Low level source term URIs]
+http://purl.obolibrary.org/obo/BFO_0000050 
+http://purl.obolibrary.org/obo/BFO_0000066 
+http://purl.obolibrary.org/obo/RO_0000056
+http://purl.obolibrary.org/obo/RO_0000057
+http://purl.obolibrary.org/obo/BFO_0000063 
+http://purl.obolibrary.org/obo/BFO_0000062 
+http://purl.obolibrary.org/obo/RO_0002211 
+http://purl.obolibrary.org/obo/RO_0002212
+http://purl.obolibrary.org/obo/RO_0002213
+http://purl.obolibrary.org/obo/RO_HOM0000001
+http://purl.obolibrary.org/obo/RO_HOM0000016
+http://purl.obolibrary.org/obo/RO_0001000
+http://purl.obolibrary.org/obo/RO_0001000
+http://purl.obolibrary.org/obo/RO_HOM0000000
+http://purl.obolibrary.org/obo/RO_0002350
+http://purl.obolibrary.org/obo/RO_0002351
+
+[Top level source term URIs and target direct superclass URIs]
+
+[Source term retrieval setting]
+includeNoIntermediates
+
+[Source annotation URIs]
+includeAxioms
+http://www.w3.org/2000/01/rdf-schema#label
+http://purl.obolibrary.org/obo/IAO_0000115 #iao:definition
+http://purl.obolibrary.org/obo/IAO_0000118 #iao:alternative term
+http://purl.obolibrary.org/obo/IAO_0000117 #iao:term editor
+http://purl.obolibrary.org/obo/IAO_0000119 #iao:definition source
+
+[Source annotation URIs to be excluded]
