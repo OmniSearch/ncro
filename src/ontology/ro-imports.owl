@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro/ro-imports.owl#"
-     xml:base="http://purl.obolibrary.org/obo/ncro/ro-imports.owl"
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl#"
+     xml:base="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -18,6 +18,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</rdfs:label>
         <rdfs:label xml:lang="en">definition</rdfs:label>
@@ -207,7 +208,11 @@
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_HOM0000000">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">in similarity relationship with</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ECO:0000041</rdfs:seeAlso>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relation between biological objects that resemble or are related to each other sufficiently to warrant a comparison.</obo:IAO_0000115>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SO:similar_to</rdfs:seeAlso>
+        <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sameness</obo:IAO_0000118>
+        <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">similar to</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
     </owl:ObjectProperty>
     
@@ -219,6 +224,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">in homology relationship with</rdfs:label>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Similarity that results from common evolutionary origin.</obo:IAO_0000115>
+        <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">homologous to</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
     </owl:ObjectProperty>
     
@@ -229,7 +235,9 @@
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_HOM0000016">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">in non functional homology relationship with</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SO:non_functional_homolog_of</rdfs:seeAlso>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural homology that involves a pseudogenic feature and its functional ancestor.</obo:IAO_0000115>
+        <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">non functional homologous to</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
     </owl:ObjectProperty>
 </rdf:RDF>

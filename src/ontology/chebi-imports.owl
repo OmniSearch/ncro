@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro/ontofox-imports.owl#"
-     xml:base="http://purl.obolibrary.org/obo/ncro/ontofox-imports.owl"
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl#"
+     xml:base="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl"/>
     
 
@@ -18,11 +19,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</rdfs:label>
     </owl:AnnotationProperty>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412">
         <rdfs:label xml:lang="en">imported from</rdfs:label>
+    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_exact_synonym</rdfs:label>
     </owl:AnnotationProperty>
     
 
@@ -49,11 +54,21 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000040 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/CHEBI_17843 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_17843">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">transfer RNA</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_33697"/>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A single-stranded RNA molecule containing about 70-90 nucleotides, folded by intrastrand base pairing into a characteristic secondary (&#39;cloverleaf&#39;) structure that carries a specific amino acid and matches it to its corresponding codon on an mRNA during protein synthesis.</obo:IAO_0000115>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ChemIDplus:9014-25-9</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KEGG COMPOUND:C00066</rdfs:seeAlso>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">transfer RNA</oboInOwl:hasExactSynonym>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
     </owl:Class>
     
@@ -63,7 +78,34 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_18111">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribosomal RNA</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_33697"/>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KEGG COMPOUND:C00240</rdfs:seeAlso>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RNA molecules which are essential structural and functional components of ribosomes, the subcellular units responsible for protein synthesis.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ribosomal RNA</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribosomal RNA</oboInOwl:hasExactSynonym>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_23367 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_23367">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">molecular entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">molecular entity</oboInOwl:hasExactSynonym>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_33247 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_33247">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">organic group</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any substituent group or skeleton containing carbon.</obo:IAO_0000115>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
     </owl:Class>
     
@@ -73,7 +115,23 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_33697">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribonucleic acid</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_23367"/>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ChemIDplus:63231-63-0</rdfs:seeAlso>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High molecular weight, linear polymers, composed of nucleotides containing ribose and linked by phosphodiester bonds; RNA is central to the synthesis of proteins.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribonucleic acid</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribonucleic acids</oboInOwl:hasExactSynonym>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_33708 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_33708">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amino-acid residue</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_33247"/>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When two or more amino acids combine to form a peptide, the elements of water are removed, and what remains of each amino acid is called an amino-acid residue.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amino-acid residue</oboInOwl:hasExactSynonym>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
     </owl:Class>
     
@@ -83,7 +141,17 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_74035">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">small nuclear RNA</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_33697"/>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A class of small RNA molecules which are comprised of approximately 150 nucleotides and which are found within the nucleus of eukaryotic cells.</obo:IAO_0000115>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:22907602</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23070852</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23190533</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23348838</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23394998</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23426875</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23727230</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiteXplore:23740936</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wikipedia:Small_nuclear_RNA</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
     </owl:Class>
     
@@ -93,6 +161,8 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_8762">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RNA(circular)</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KEGG COMPOUND:C02073</rdfs:seeAlso>
+        <oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RNA(circular)</oboInOwl:hasExactSynonym>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
     </owl:Class>
 </rdf:RDF>
@@ -101,3 +171,8 @@
 
 <!-- Generated by the OWL API (version 3.2.4.1806) http://owlapi.sourceforge.net -->
 
+<!--
+Notice: All the OBO ontologies have changed the term URI format from http://purl.org/obo/owl/ontology#ontology_nnnnnnn to http://purl.obolibrary.org/obo/ontology_nnnnnnn. Please make sure your input files are updated.
+The following terms do not have any related axioms in the source ontology:
+http://purl.obolibrary.org/obo/BFO_0000040
+-->

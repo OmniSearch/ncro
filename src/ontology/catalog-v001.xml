@@ -3,6 +3,8 @@
     <group prefer="public" xml:base="">
       <uri  name="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl" uri="chebi-imports.owl"/>
       <uri  name="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl" uri="ro-imports.owl"/>
+      <uri  name="http://purl.obolibrary.org/obo/ncro/dev/so-imports.owl" uri="so-imports.owl"/>
+      <uri  name="http://purl.obolibrary.org/obo/ncro/dev/go-imports.owl" uri="go-imports.owl"/>
       <uri name="http://purl.obolibrary.org/obo/ncro/dev/imports.owl" uri="imports.owl"/>
       <uri name="http://purl.obolibrary.org/obo/ncro.owl" uri="ncro.owl"/>
     </group>
