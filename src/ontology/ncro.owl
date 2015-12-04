@@ -15,11 +15,17 @@
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/go-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/go-imports.owl"/> 
+<!--        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/imports.owl"/> -->
         <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncro.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/so-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/so-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/clo-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/uberon-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/iao-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/obi-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/pr-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/doid-imports.owl"/>
     </owl:Ontology>
     
 
