@@ -270,9 +270,11 @@ http://purl.obolibrary.org/obo/GO_2001141
 
 [Top level source term URIs and target direct superclass URIs]
 http://purl.obolibrary.org/obo/GO_0005575
+subClassOf http://purl.obolibrary.org/obo/BFO_0000040
 http://purl.obolibrary.org/obo/GO_0008150
+subClassOf http://purl.obolibrary.org/obo/BFO_0000015
 http://purl.obolibrary.org/obo/GO_0003674
-
+subClassOf http://purl.obolibrary.org/obo/BFO_0000034
 
 [Source term retrieval setting]
 includeNoIntermediates

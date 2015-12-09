@@ -5,6 +5,8 @@ http://purl.obolibrary.org/obo/ncro/dev/doid-imports.owl
 DOID
 
 [Low level source term URIs]
+http://purl.obolibrary.org/obo/DOID_14566
+http://purl.obolibrary.org/obo/DOID_162
 http://purl.obolibrary.org/obo/DOID_4
 
 [Top level source term URIs and target direct superclass URIs]

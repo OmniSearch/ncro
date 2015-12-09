@@ -290,40 +290,6 @@
         <obo:IAO_0000118 xml:lang="en">circRNA</obo:IAO_0000118>
     </rdf:Description>
     
-
-
-    <!-- http://purl.obolibrary.org/obo/DOID_4 -->
-
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DOID_4">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/GO_0003674 -->
-
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/GO_0003674">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000034"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/GO_0005575 -->
-
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/GO_0005575">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/GO_0008150 -->
-
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/GO_0008150">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
-    </rdf:Description>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/NCRO_0000001 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0000001">
