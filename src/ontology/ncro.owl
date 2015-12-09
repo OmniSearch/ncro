@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl#"
-     xml:base="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl"
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/"
+     xml:base="http://purl.obolibrary.org/obo/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
@@ -69,9 +69,6 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl#IAO_0000117 -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl#IAO_0000117"/>
     
 
 

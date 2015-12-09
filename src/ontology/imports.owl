@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl#"
-     xml:base="http://purl.obolibrary.org/obo/ncro-obo-WorkingVersion-06302015.owl"
-     xmlns:ncro="http://purl.obolibrary.org/obo/ncro#"
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/"
+     xml:base="http://purl.obolibrary.org/obo/"
+     xmlns:ncro="http://purl.obolibrary.org/obo/NCRO_"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
