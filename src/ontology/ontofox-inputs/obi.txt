@@ -10,7 +10,7 @@ http://purl.obolibrary.org/obo/OBI_0100060
 http://purl.obolibrary.org/obo/OBI_0100026
 
 [Top level source term URIs and target direct superclass URIs]
-http://purl.obolibrary.org/obo/OBI_0100047
+http://purl.obolibrary.org/obo/OBI_0000047
 subClassOf http://purl.obolibrary.org/obo/BFO_0000040
 http://purl.obolibrary.org/obo/OBI_0100060
 subClassOf http://purl.obolibrary.org/obo/BFO_0000040

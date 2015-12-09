@@ -38294,14 +38294,6 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/OBI_0100047 -->
-
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0100047">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-    </rdf:Description>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/SO_0000110 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/SO_0000110">
