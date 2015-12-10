@@ -22,7 +22,9 @@
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="&obo;ncro.owl">
+        <dc:contributor>He Zhang</dc:contributor>
         <dc:contributor xml:lang="en">Alan Ruttenberg</dc:contributor>
+        <dc:contributor>Asiyah Yu Lin</dc:contributor>
         <rdfs:comment xml:lang="en">December 2015: This ontology is currently undergoing changes. ID deprecation policies will start in the next couple of months. In the mean time, identifiers may be deleted and not marked obsolete.</rdfs:comment>
         <dc:contributor xml:lang="en">Jingshan Huang</dc:contributor>
         <owl:imports rdf:resource="&obo;bfo.owl"/>
@@ -353,23 +355,33 @@
         <rdfs:subClassOf rdf:resource="&obo;GO_0035198"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;RO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;NCRO_0004001"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="&obo;NCRO_0000003"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;RO_0000057"/>
-                <owl:someValuesFrom>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:allValuesFrom>
                     <owl:Restriction>
-                        <owl:onProperty>
-                            <rdf:Description>
-                                <owl:inverseOf rdf:resource="&obo;IAO_0000136"/>
-                            </rdf:Description>
-                        </owl:onProperty>
-                        <owl:someValuesFrom rdf:resource="&obo;NCRO_0000025"/>
+                        <owl:onProperty rdf:resource="&obo;RO_0000057"/>
+                        <owl:someValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty>
+                                    <rdf:Description>
+                                        <owl:inverseOf rdf:resource="&obo;IAO_0000136"/>
+                                    </rdf:Description>
+                                </owl:onProperty>
+                                <owl:someValuesFrom rdf:resource="&obo;NCRO_0000025"/>
+                            </owl:Restriction>
+                        </owl:someValuesFrom>
                     </owl:Restriction>
-                </owl:someValuesFrom>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -539,18 +551,18 @@
         <rdfs:subClassOf rdf:resource="&obo;CHEBI_23367"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;RO_0000053"/>
-                <owl:someValuesFrom rdf:resource="&obo;NCRO_0004017"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&obo;IAO_0000136"/>
                     </rdf:Description>
                 </owl:onProperty>
                 <owl:someValuesFrom rdf:resource="&obo;SO_0000704"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCRO_0004017"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <oboInOwl:creation_date rdf:datatype="&xsd;string">2015-05-25T15:37:18Z</oboInOwl:creation_date>
@@ -36704,7 +36716,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
-                <owl:allValuesFrom rdf:resource="&obo;NCRO_0000003"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="&obo;NCRO_0000003"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
