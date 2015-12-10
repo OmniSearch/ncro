@@ -8,27 +8,31 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ncro.owl">
+        <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ncro/ncro.owl">
+    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/ncro.owl"/>
+  <owl:Ontology>
+  
+
         <dc:contributor xml:lang="en">Alan Ruttenberg</dc:contributor>
         <rdfs:comment xml:lang="en">December 2015: This ontology is currently undergoing changes. ID deprecation policies will start in the next couple of months. In the mean time, identifiers may be deleted and not marked obsolete.</rdfs:comment>
-        <dc:contributor xml:lang="en">Jingshan Huang</dc:contributor>
+        <dc:contributor>Jingshan Huang</dc:contributor>
 	<dc:contributor>He Zhang</dc:contributor>
-        <dc:contributor xml:lang="en">Alan Ruttenberg</dc:contributor>
+        <dc:contributor>Alan Ruttenberg</dc:contributor>
         <dc:contributor>Asiyah Yu Lin</dc:contributor>
 	<dc:contributor>Harrison Strachan</dc:contributor>
 	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/chebi-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/go-imports.owl"/> 
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/chebi-imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/go-imports.owl"/> 
         <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncro.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/so-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/clo-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/uberon-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/iao-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/obi-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/pr-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/doid-imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/ro-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/so-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/clo-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/uberon-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/iao-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/obi-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/pr-imports.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/doid-imports.owl"/>
     </owl:Ontology>
     
 
