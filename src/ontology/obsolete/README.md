@@ -1,1 +1,0 @@
-This directory has bits and pieces that were removed from the ncro owl in the process of Alan editing ncro.
