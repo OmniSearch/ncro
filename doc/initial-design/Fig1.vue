@@ -1,17 +1,17 @@
-<!-- Tufts VUE 3.2.2 concept-map (ncRO-core-v8.vue) 2015-07-05 -->
+<!-- Tufts VUE 3.3.0 concept-map (Fig1-HJS.vue) 2015-12-10 -->
 <!-- Tufts VUE: http://vue.tufts.edu/ -->
 <!-- Do Not Remove: VUE mapping @version(1.1) jar:file:/C:/Program%20Files%20(x86)/VUE/VUE.jar!/tufts/vue/resources/lw_mapping_1_1.xml -->
-<!-- Do Not Remove: Saved date Sun Jul 05 00:14:43 CDT 2015 by He Zhang on platform Windows 7 6.1 in JVM 1.7.0_21-b11 -->
-<!-- Do Not Remove: Saving version @(#)VUE: built May 23 2013 at 2146 by tomadm on Linux 2.6.18-348.2.1.el5 i386 JVM 1.7.0_21-b11(bits=32) -->
+<!-- Do Not Remove: Saved date Thu Dec 10 00:55:12 CST 2015 by harri on platform Windows 8 6.2 in JVM 1.7.0_21-b11 -->
+<!-- Do Not Remove: Saving version @(#)VUE: built October 8 2015 at 1658 by tomadm on Linux 2.6.32-504.23.4.el6.x86_64 i386 JVM 1.7.0_21-b11(bits=32) -->
 <?xml version="1.0" encoding="US-ASCII"?>
 <LW-MAP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="none" ID="0" label="ncRO-core-v8.vue"
+    xsi:noNamespaceSchemaLocation="none" ID="0" label="Fig1-HJS.vue"
     created="1431734769931" x="0.0" y="0.0" width="1.4E-45"
     height="1.4E-45" strokeWidth="0.0" autoSized="false">
-    <resource referenceCreated="1436073283955" size="77231"
-        spec="C:\Users\He Zhang\Desktop\ncRO-core-v8.vue" type="1" xsi:type="URLResource">
-        <title>ncRO-core-v8.vue</title>
-        <property key="File" value="C:\Users\He Zhang\Desktop\ncRO-core-v8.vue"/>
+    <resource referenceCreated="1449730512968" size="77085"
+        spec="C:\Users\harri\Desktop\Fig1-HJS.vue" type="1" xsi:type="URLResource">
+        <title>Fig1-HJS.vue</title>
+        <property key="File" value="C:\Users\harri\Desktop\Fig1-HJS.vue"/>
     </resource>
     <fillColor>#FFFFFF</fillColor>
     <strokeColor>#404040</strokeColor>
@@ -221,19 +221,19 @@
             <font>-plain-1</font>
             <URIString>http://vue.tufts.edu/rdf/resource/bc519b5ac0a80c6101fc8aabed32d421</URIString>
             <richText>&lt;html&gt;
-  &lt;head style="color: #000000" color="#000000"&gt;
+  &lt;head color="#000000" style="color: #000000"&gt;
     &lt;style type="text/css"&gt;
       &lt;!--
-        body { font-size: 12; margin-bottom: 0px; margin-top: 0px; margin-left: 0px; color: #000000; font-family: Arial; margin-right: 0px }
-        ol { font-size: 12; list-style-position: outside; margin-top: 6; margin-left: 30; vertical-align: middle; font-family: Arial }
-        p { margin-bottom: 0; margin-top: 0; margin-left: 0; color: #000000; margin-right: 0 }
-        ul { font-size: 12; list-style-position: outside; margin-top: 6; margin-left: 30; vertical-align: middle; font-family: Arial }
+        body { margin-top: 0px; color: #000000; font-size: 12; font-family: Arial; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }
+        ol { margin-top: 6; list-style-position: outside; vertical-align: middle; font-family: Arial; font-size: 12; margin-left: 30 }
+        p { margin-top: 0; color: #000000; margin-right: 0; margin-bottom: 0; margin-left: 0 }
+        ul { margin-top: 6; list-style-position: outside; vertical-align: middle; font-family: Arial; font-size: 12; margin-left: 30 }
       --&gt;
     &lt;/style&gt;
     
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;p style="color: #000000" color="#000000"&gt;
+    &lt;p color="#000000" style="color: #000000"&gt;
       And so on...
     &lt;/p&gt;
   &lt;/body&gt;
@@ -384,8 +384,8 @@
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
     <child ID="111" label="NCRO:regulate_mRNA_translation" layerID="1"
-        created="1433550883004" x="225.66428" y="224.86768"
-        width="242.0" height="87.48242" strokeWidth="1.0"
+        created="1433550883004" x="226.16428" y="224.86768"
+        width="241.0" height="87.48242" strokeWidth="1.0"
         autoSized="false" controlCount="2" arrowState="2" xsi:type="link">
         <strokeColor>#7C18C9</strokeColor>
         <textColor>#7C18C9</textColor>
@@ -762,8 +762,8 @@
         <ctrlPoint1 x="300.36243" y="180.92038" xsi:type="point"/>
     </child>
     <child ID="152" label="NCRO:regulate_miRNA_transcription"
-        layerID="1" created="1433753551626" x="145.33499" y="-24.324886"
-        width="313.03543" height="100.10889" strokeWidth="1.0"
+        layerID="1" created="1433753551626" x="145.83499" y="-24.324886"
+        width="312.53543" height="100.10889" strokeWidth="1.0"
         autoSized="false" controlCount="2" arrowState="2" xsi:type="link">
         <strokeColor>#AF55F4</strokeColor>
         <textColor>#AF55F4</textColor>
@@ -921,7 +921,7 @@
         <ID2 xsi:type="node">148</ID2>
         <ctrlPoint0 x="673.0008" y="178.09903" xsi:type="point"/>
     </child>
-    <child ID="172" layerID="1" created="1433778917213" x="61.204132"
+    <child ID="172" layerID="1" created="1433778917213" x="56.716187"
         y="413.35632" width="183.75" height="139.0" strokeWidth="1.0"
         autoSized="true" xsi:type="node">
         <fillColor>#FDE888</fillColor>
@@ -977,19 +977,19 @@
             <font>-plain-1</font>
             <URIString>http://vue.tufts.edu/rdf/resource/d3e2e706c0a80c4a00de5ab431fd452e</URIString>
             <richText>&lt;html&gt;
-  &lt;head style="color: #000000" color="#000000"&gt;
+  &lt;head color="#000000" style="color: #000000"&gt;
     &lt;style type="text/css"&gt;
       &lt;!--
-        body { font-size: 12; margin-bottom: 0px; margin-top: 0px; margin-left: 0px; color: #000000; font-family: Arial; margin-right: 0px }
-        ol { font-size: 12; list-style-position: outside; margin-top: 6; margin-left: 30; vertical-align: middle; font-family: Arial }
-        p { margin-bottom: 0; margin-top: 0; margin-left: 0; color: #000000; margin-right: 0 }
-        ul { font-size: 12; list-style-position: outside; margin-top: 6; margin-left: 30; vertical-align: middle; font-family: Arial }
+        body { margin-top: 0px; color: #000000; font-size: 12; font-family: Arial; margin-right: 0px; margin-bottom: 0px; margin-left: 0px }
+        ol { margin-top: 6; list-style-position: outside; vertical-align: middle; font-family: Arial; font-size: 12; margin-left: 30 }
+        p { margin-top: 0; color: #000000; margin-right: 0; margin-bottom: 0; margin-left: 0 }
+        ul { margin-top: 6; list-style-position: outside; vertical-align: middle; font-family: Arial; font-size: 12; margin-left: 30 }
       --&gt;
     &lt;/style&gt;
     
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;p style="color: #000000" color="#000000"&gt;
+    &lt;p color="#000000" style="color: #000000"&gt;
       And so on...
     &lt;/p&gt;
   &lt;/body&gt;
@@ -1000,24 +1000,24 @@
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
     <child ID="179" label="is_a" layerID="1" created="1433778987473"
-        x="244.45413" y="452.2527" width="144.92737" height="62.487885"
+        x="239.96619" y="452.2527" width="149.41531" height="62.428833"
         strokeWidth="1.0" autoSized="false" controlCount="2"
         arrowState="2" xsi:type="link">
         <strokeColor>#404040</strokeColor>
         <textColor>#404040</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/d3e52679c0a80c4a00de5ab47f2554ab</URIString>
-        <point1 x="244.95413" y="498.73975"/>
+        <point1 x="240.46619" y="498.26736"/>
         <point2 x="388.8815" y="452.7527"/>
         <ID1 xsi:type="node">172</ID1>
         <ID2 xsi:type="node">92</ID2>
         <ctrlPoint0 x="299.49146" y="508.1682" xsi:type="point"/>
         <ctrlPoint1 x="381.23645" y="521.9758" xsi:type="point"/>
     </child>
-    <child ID="180" label="CL:cell" layerID="1" created="1433985534424"
+    <child ID="180" label="GO:cell" layerID="1" created="1433985534424"
         x="-92.718704" y="95.57719" width="70.58031" height="27.0"
         strokeWidth="1.0" autoSized="false" xsi:type="node">
-        <fillColor>#E8E622</fillColor>
+        <fillColor>#B5B995</fillColor>
         <strokeColor>#000000</strokeColor>
         <textColor>#000000</textColor>
         <font>Arial-plain-16</font>
@@ -1155,8 +1155,8 @@
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
     <child ID="202" label="NCRO:is_classified_into_gene_family_group"
-        layerID="1" created="1434679926021" x="701.301" y="285.3253"
-        width="314.0" height="73.989746" strokeWidth="1.0"
+        layerID="1" created="1434679926021" x="701.801" y="285.3253"
+        width="313.0" height="73.989746" strokeWidth="1.0"
         autoSized="false" controlCount="2" arrowState="2" xsi:type="link">
         <strokeColor>#7C18C9</strokeColor>
         <textColor>#7C18C9</textColor>
@@ -1228,30 +1228,30 @@
         <URIString>http://vue.tufts.edu/rdf/resource/099bf7d4c0a80c7d01a6e381d7ac00ee</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="213" label="SO:tRNA" layerID="1" created="1434680308388"
-        x="341.54984" y="575.054" width="75.0" height="27.0"
-        strokeWidth="1.0" autoSized="true" xsi:type="node">
-        <fillColor>#9DDB53</fillColor>
+    <child ID="213" label="CHEBI:tRNA" layerID="1"
+        created="1434680308388" x="358.37964" y="585.15186"
+        width="100.0" height="27.0" strokeWidth="1.0" autoSized="true" xsi:type="node">
+        <fillColor>#C1C1FF</fillColor>
         <strokeColor>#000000</strokeColor>
         <textColor>#000000</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/099eeacdc0a80c7d01a6e3814eac840d</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="214" label="SO:rRNA" layerID="1" created="1434680329916"
-        x="229.48584" y="577.07227" width="76.0" height="27.0"
-        strokeWidth="1.0" autoSized="true" xsi:type="node">
-        <fillColor>#9DDB53</fillColor>
+    <child ID="214" label="CHEBI:rRNA" layerID="1"
+        created="1434680329916" x="220.50995" y="582.68225"
+        width="101.0" height="27.0" strokeWidth="1.0" autoSized="true" xsi:type="node">
+        <fillColor>#C1C1FF</fillColor>
         <strokeColor>#000000</strokeColor>
         <textColor>#000000</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/099eeacdc0a80c7d01a6e3817b886396</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="215" label="SO:lncRNA" layerID="1"
-        created="1434680340300" x="81.057556" y="574.96313" width="90.0"
+    <child ID="215" label="NCRO:lncRNA" layerID="1"
+        created="1434680340300" x="86.667496" y="578.3291" width="113.0"
         height="27.0" strokeWidth="1.0" autoSized="true" xsi:type="node">
-        <fillColor>#9DDB53</fillColor>
+        <fillColor>#FDE888</fillColor>
         <strokeColor>#000000</strokeColor>
         <textColor>#000000</textColor>
         <font>Arial-plain-16</font>
@@ -1340,49 +1340,49 @@
         <ctrlPoint0 x="565.65985" y="528.0083" xsi:type="point"/>
     </child>
     <child ID="222" label="is_a" layerID="1" created="1434680585274"
-        x="413.60394" y="523.47656" width="53.273895" height="55.72284"
+        x="430.96497" y="523.47656" width="40.253143" height="62.175293"
         strokeWidth="1.0" autoSized="false" controlCount="1"
         arrowState="2" xsi:type="link">
         <strokeColor>#404040</strokeColor>
         <textColor>#404040</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/09a14d85c0a80c7d01a6e3814db44f55</URIString>
-        <point1 x="414.10394" y="578.6994"/>
+        <point1 x="431.46497" y="585.15186"/>
         <point2 x="455.83426" y="523.97656"/>
         <ID1 xsi:type="node">213</ID1>
         <ID2 xsi:type="node">26</ID2>
         <ctrlPoint0 x="468.7866" y="563.32666" xsi:type="point"/>
     </child>
     <child ID="223" label="is_a" layerID="1" created="1434680604482"
-        x="302.57385" y="517.41736" width="104.1488" height="63.850586"
+        x="308.323" y="517.41736" width="98.39966" height="65.76489"
         strokeWidth="1.0" autoSized="false" controlCount="1"
         arrowState="2" xsi:type="link">
         <strokeColor>#404040</strokeColor>
         <textColor>#404040</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/09a14d85c0a80c7d01a6e381394012d7</URIString>
-        <point1 x="303.07385" y="580.76794"/>
+        <point1 x="308.823" y="582.68225"/>
         <point2 x="406.22266" y="517.91736"/>
         <ID1 xsi:type="node">214</ID1>
         <ctrlPoint0 x="351.73148" y="567.36304" xsi:type="point"/>
     </child>
     <child ID="224" label="is_a" layerID="1" created="1434680643191"
-        x="168.52107" y="511.36276" width="238.20158" height="68.353"
+        x="193.25471" y="511.36276" width="213.46794" height="68.383514"
         strokeWidth="1.0" autoSized="false" controlCount="2"
         arrowState="2" xsi:type="link">
         <strokeColor>#404040</strokeColor>
         <textColor>#404040</textColor>
         <font>Arial-plain-16</font>
         <URIString>http://vue.tufts.edu/rdf/resource/09a32d68c0a80c7d01a6e381f3119b49</URIString>
-        <point1 x="169.02107" y="579.21576"/>
+        <point1 x="193.75471" y="579.2463"/>
         <point2 x="406.22266" y="511.86276"/>
         <ID1 xsi:type="node">215</ID1>
         <ctrlPoint0 x="353.59146" y="539.48926" xsi:type="point"/>
         <ctrlPoint1 x="209.1069" y="532.1688" xsi:type="point"/>
     </child>
     <child ID="225" label="NCRO:miRNA_expressed_in_tissue" layerID="1"
-        created="1434688446617" x="21.547562" y="236.83136"
-        width="292.37085" height="75.92993" strokeWidth="1.0"
+        created="1434688446617" x="22.047562" y="236.83136"
+        width="291.87085" height="75.92993" strokeWidth="1.0"
         autoSized="false" controlCount="2" arrowState="2" xsi:type="link">
         <strokeColor>#7C18C9</strokeColor>
         <textColor>#7C18C9</textColor>
@@ -1399,8 +1399,8 @@
         y="0.0" width="1.4E-45" height="1.4E-45" strokeWidth="0.0" autoSized="false">
         <URIString>http://vue.tufts.edu/rdf/resource/5a6f92b60a147a5701bb3ae4dfffb6d3</URIString>
     </layer>
-    <userZoom>0.75</userZoom>
-    <userOrigin x="-112.244705" y="-447.94583"/>
+    <userZoom>0.8912761074464014</userZoom>
+    <userOrigin x="-210.8729" y="-210.61868"/>
     <presentationBackground>#202020</presentationBackground>
     <PathwayList currentPathway="0" revealerIndex="-1">
         <pathway ID="0" label="Untitled Pathway" created="1431734769931"
@@ -1420,7 +1420,7 @@
                 <URIString>http://vue.tufts.edu/rdf/resource/5a6f92b80a147a5701bb3ae4de1adb6c</URIString>
                 <titleStyle ID="3" label="Header"
                     created="1431734769971" x="335.5" y="171.0"
-                    width="129.0" height="58.0" strokeWidth="0.0"
+                    width="129.0" height="55.0" strokeWidth="0.0"
                     autoSized="true" isStyle="true" xsi:type="node">
                     <strokeColor>#404040</strokeColor>
                     <textColor>#FFFFFF</textColor>
@@ -1430,7 +1430,7 @@
                 </titleStyle>
                 <textStyle ID="4" label="Slide Text"
                     created="1431734769972" x="346.5" y="280.5"
-                    width="107.0" height="39.0" strokeWidth="0.0"
+                    width="107.0" height="37.0" strokeWidth="0.0"
                     autoSized="true" isStyle="true" xsi:type="node">
                     <strokeColor>#404040</strokeColor>
                     <textColor>#FFFFFF</textColor>
@@ -1439,7 +1439,7 @@
                     <shape xsi:type="rectangle"/>
                 </textStyle>
                 <linkStyle ID="5" label="Links" created="1431734769973"
-                    x="373.5" y="383.0" width="53.0" height="34.0"
+                    x="373.5" y="383.0" width="53.0" height="32.0"
                     strokeWidth="0.0" autoSized="true" isStyle="true" xsi:type="node">
                     <strokeColor>#404040</strokeColor>
                     <textColor>#B3BFE3</textColor>
@@ -1452,6 +1452,6 @@
     </PathwayList>
     <date>2015-05-15</date>
     <modelVersion>6</modelVersion>
-    <saveLocation>C:\Users\He Zhang\Desktop</saveLocation>
-    <saveFile>C:\Users\He Zhang\Desktop\ncRO-core-v8.vue</saveFile>
+    <saveLocation>C:\Users\harri\Desktop</saveLocation>
+    <saveFile>C:\Users\harri\Desktop\Fig1-HJS.vue</saveFile>
 </LW-MAP>
