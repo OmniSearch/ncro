@@ -21,7 +21,12 @@ http://purl.obolibrary.org/obo/RO_0001000
 http://purl.obolibrary.org/obo/RO_HOM0000000
 http://purl.obolibrary.org/obo/RO_0002350
 http://purl.obolibrary.org/obo/RO_0002351
-
+http://purl.obolibrary.org/obo/RO_0000053 # bearer of (grumble bfo)
+http://purl.obolibrary.org/obo/RO_0000052 # inheres in (grumble bfo)
+http://purl.obolibrary.org/obo/BFO_0000055 #realizes
+http://purl.obolibrary.org/obo/BFO_0000054 #realized in
+http://purl.obolibrary.org/obo/RO_0002160 #only in taxon
+ 
 [Top level source term URIs and target direct superclass URIs]
 
 [Source term retrieval setting]
