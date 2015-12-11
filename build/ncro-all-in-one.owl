@@ -33,7 +33,8 @@
         <dc:contributor>Asiyah Yu Lin</dc:contributor>
         <dc:contributor>He Zhang</dc:contributor>
         <dc:contributor>Jingshan Huang</dc:contributor>
-        <rdfs:comment xml:lang="en">This is the release of December 12, 2015. It will always be available at http://purl.obolibrary.org/ncro/2015-12-10/ncro.owl</rdfs:comment>
+        <rdfs:comment xml:lang="en">This is the release of December 12, 2015. It will always be available at http://purl.obolibrary.org/ncro/2015-12-10/ncro.owl. While current, this ontology is also available at http://purl.obolibrary.org/obo/ncro.owl
+	This file is a merge of NCRO and any imported ontologies or terms. You can access the ontology that existed before the merge, with imports intact, at http://purl.obolibrary.org/obo/ncro/YYYY-MM-DD/ncro.owl or, for the current version, http://purl.obolibrary.org/obo/ncro/prebuild/ncro.owl</rdfs:comment>
         <rdfs:comment xml:lang="en">This ontology is currently undergoing changes. ID deprecation policies will start in the next couple of months. In the mean time, identifiers may be deleted and not marked obsolete.</rdfs:comment>
         <rdfs:seeAlso rdf:resource="&obo;ncro/issues"/>
         <rdfs:seeAlso rdf:resource="&obo;ncro/repository"/>
