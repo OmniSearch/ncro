@@ -1,4 +1,4 @@
-Build artifacts, such as releases, should be created in this directory.
+Build artifacts, such as releases, should be created in this directory, *in the release branch*, not in the master branch.
 
 The process is
 
