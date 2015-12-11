@@ -10,7 +10,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
         <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ncro/ncro.owl">
     <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ncro/2015-12-10/ncro.owl"/>
-  <owl:Ontology>
+	</cowl:Ontology>
   
 
         <dc:contributor xml:lang="en">Alan Ruttenberg</dc:contributor>
