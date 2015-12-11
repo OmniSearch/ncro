@@ -10,7 +10,7 @@ The process is
 
 - Change all the /dev/ URIs in ncro.owl to import by versionIRI instead of /dev
 
-- Create a merged file. I used protege's merge function. Save it in build/ncro-all-in-one.owl
+- Before saving, check that "Use XML Entities" is *unchecked* in the "Save" tab of preferences. Create a merged file. I used protege's merge function. Save the merged file in build/ncro-all-in-one.owl
 
 - Fix ontology properties in the merged file. Since the merge lumps all imported ontology properties into the single ontology, I remove those and replace with only the ontology properties in src/ontology/ncro.owl. 
 
@@ -21,18 +21,18 @@ The process is
 - Since we have erased evidence of imports, I add a seeAlso for each ontology we've imported from. In the version of 2015-12-10 that looks like:
 
 
->        <rdfs:seeAlso rdf:resource="&obo;obi.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;pr.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;ro.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;so.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;uberon.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;chebi.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;clo.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;doid.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;go.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;bfo.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;iao/ontology-metadata.owl"/>
->        <rdfs:seeAlso rdf:resource="&obo;iao.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/chebi.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/clo.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/doid.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/pr.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/so.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/uberon.owl"/>
+>        <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl"/>
 
 
 - commit,  push
