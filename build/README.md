@@ -39,3 +39,7 @@ The process is
 
 Next the PURLs need to be updated. You can edit the PURLs in the github interface. Our configuration is [here](https://github.com/OBOFoundry/purl.obolibrary.org/blob/master/config/ncro.yml). 
 The config file has comments, but to reiterate: When there is a new release you need to add a prefix/replacement pairs around line 28. You need to update the "products:" entry to point to the raw merged file. Finally you need to adjust the entry "exact: /prebuild/ncro.owl" so that the replacement points to the raw ncro.owl file.
+
+Once you've finished editing, commit the changes. You will be offered to create a new branch. Do so and submit the pull request. The pull request will be handled by someone among the purl.obolibrary.org developers. Once the pull request is merged between 15 and 30 minutes later the purls should be active. Test them. In particular test http://purl.obolibrary.org/obo/ncro.owl, http://purl.obolibrary.org/obo/ncro/prebuild/ncro.owl and http://purl.obolibrary.org/obo/ncro/YYYY-MM-DD/ncro.owl. To test them, load them by URL into protege and making sure there are no exceptions while loading and that content is what you expect.
+
+Alan Ruttenberg
