@@ -7,6 +7,7 @@
    (family2member :accessor family2member :initform (make-hash-table :test 'equalp))
    (entries :accessor entries)
    (problem-families :initform '("MIPF0000783" "MIPF0000773" "MIPF0000153") :allocation :class :accessor problem-families) ; family name matches member name
+   (ncro :allocation :class)
   ))
 
 ;; reads the alias file, which maps miRBase identifiers with labels
@@ -50,14 +51,14 @@
 		     (loop for (accession . name) in current-members do
 			  (unless (not (gethash accession (member2family m))) (debug "Member already has a family"))
 			  (setf (gethash name (name2accession m)) accession)
-			  (setf (gethash accession (accession2name m)) name)		    
+			  (pushnew name (gethash accession (accession2name m)) :test 'equal)
 			  (setf (gethash accession (member2family m)) current-accession))
 
 		     (unless (not (gethash current-id (name2accession m))) (debug "current name already present"))
 		     (setf (gethash current-id (name2accession m)) current-accession)
 
 		     (unless (not (gethash current-accession (accession2name m))) (debug "current-accession already registered"))
-		     (setf (gethash current-accession (accession2name m)) current-id)))
+		     (pushnew current-id (gethash current-accession (accession2name m)) :test 'equal)))
 	       (setq state :nothing current-members nil current-id nil current-accession nil)
 	       )
 	     (set-id (id)
@@ -157,6 +158,24 @@
 	   finally (if (and current-accession (not (eq state :nothing)))
 		       (finish-entry)))))))
 
+(defmethod check-ncro-mirna-against-mirbase ((m mirbase) &optional (ontology-file "ncro:src;ontology;ncro.owl"))
+  (unless (and (slot-boundp m 'ncro) (slot-value m 'ncro))
+    (setf (slot-value m 'ncro)
+	  (load-ontology ontology-file)))
+  (let ((ontology (slot-value m 'ncro))
+	(mirna-class !obo:NCRO_0004001))
+    (let ((classes (descendants  mirna-class ontology)))
+      (loop for class in classes
+;;	 repeat 100
+	 for label = (car (rdfs-label class ontology))
+	 for dbxref = (second (first (entity-annotations class ontology !oboinowl:hasDbXref)))
+	 for mirbase-accession = (caar (all-matches dbxref "miRBase:(.*)" 1))
+	 do
+	   (when dbxref
+	     (let ((lookup-names (gethash mirbase-accession (accession2name m))))
+	       (when (not (member label lookup-names :test 'equal))
+		 (format t "~a	~{~a~^;~}	~a~%" mirbase-accession lookup-names label ))))))))
+  
 
 
 #|
