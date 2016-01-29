@@ -5,7 +5,7 @@
    (name2accession :accessor name2accession :initform (make-hash-table :test 'equalp))
    (member2family :accessor member2family :initform (make-hash-table :test 'equalp))
    (family2member :accessor family2member :initform (make-hash-table :test 'equalp))
-   (entries :accessor entries)
+   (entries :accessor entries :initform (make-hash-table :test 'equalp))
    (problem-families :initform '("MIPF0000783" "MIPF0000773" "MIPF0000153") :allocation :class :accessor problem-families) ; family name matches member name
    (ncro :allocation :class)
   ))
@@ -107,8 +107,9 @@
 	       (print string)
 	       (print-db state current-name current-accession current-description current-longname current-database-references))
 	     (finish-entry ()
-	       ;(debug "entry")
-	       (setq state :nothing current-members nil current-accession nil current-description nil current-longname nil current-database-references nil))
+	       (setf (gethash current-accession (entries m))
+		     `(:accession ,current-accession :name ,current-name :longname ,current-longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse current-description)) "\\s+" " ")))
+	       (setq state :nothing current-members nil current-name nil current-accession nil current-description nil current-longname nil current-database-references nil))
 	     (set-accession (accession)
 	       (if current-accession
 		   (debug "accession twice in a record")
@@ -118,6 +119,12 @@
 	       (if current-longname
 		   (debug "already a long name")
 		   (setq current-longname string state :longname))
+	       )
+	     (set-current-name (string)
+	       (if current-name
+		   (debug "already a current name")
+		   (let ((parts (car (all-matches string "(.*?)\\s+(.*?); (.*?); (.*?); (.*?)." 1))))
+		     (setq current-name (car parts) state :name)))
 	       )
 	     (set-description (string)
 	       (push string current-description)
@@ -139,9 +146,9 @@
 		     (finish-entry))
 		 (cond ((equal field "//")
 			(finish-entry))
-		       ((member field '("ID" "RA" "RN" "RT" "RL"  "FH" "FT" "RC" "RX" "XX") :test 'equalp) (skip "member" line field))
-		       ;;((equal field "ID")
-		       ;; (set-id restline))
+		       ((member field '("RA" "RN" "RT" "RL"  "FH" "FT" "RC" "RX" "XX") :test 'equalp) (skip "member" line field))
+		       ((equal field "ID")
+		        (set-current-name restline))
 		       ((equal field "AC")
 			(set-accession restline))
 		       ((equal field "DE")
@@ -166,7 +173,6 @@
 	(mirna-class !obo:NCRO_0004001))
     (let ((classes (descendants  mirna-class ontology)))
       (loop for class in classes
-;;	 repeat 100
 	 for label = (car (rdfs-label class ontology))
 	 for dbxref = (second (first (entity-annotations class ontology !oboinowl:hasDbXref)))
 	 for mirbase-accession = (caar (all-matches dbxref "miRBase:(.*)" 1))
@@ -174,7 +180,36 @@
 	   (when dbxref
 	     (let ((lookup-names (gethash mirbase-accession (accession2name m))))
 	       (when (not (member label lookup-names :test 'equal))
-		 (format t "~a	~{~a~^;~}	~a~%" mirbase-accession lookup-names label ))))))))
+		 (format t "~a	~{~a~^;~}		~a	~a~%" mirbase-accession lookup-names label (gethash label (name2accession m))))))))))
+
+(defmethod species-for-prefix ((m mirbase) prefix)
+  (second (assoc prefix '(("hsa" !obo:NCBITaxon_9606)
+			  ("mmu" !obo:NCBITaxon_10090))
+		 :test 'equal)))
+  
+(defmethod ncro-uri ((m mirbase) entry)
+  (make-uri (format nil "http://example.org/~a" (getf entry :accession))))
+
+(defmethod generate-mirbase-owl ((m mirbase))
+  (maphash 
+   (lambda(accession entry)
+     (let ((term-uri (ncro-uri m entry))
+	   (only-in-taxon !obo:RO_0002160)
+	   (alternative-term !IAO_0000118)
+	   (term-species (species-for-prefix m (subseq (car (getf entry :name)) 0 3))))
+       (when term-species 
+	 (print `((declaration (class ,term-uri ))
+		  (annotation !rdfs:label ,(car (getf entry :name)))
+		  ,@(loop for label in (cdr (getf entry :name))
+		       collect 
+			 (list 'annotation alternative-term label))
+		  (annotation !oboinowl:hasDbXref ,accession)
+		  (annotation ,alternative-term ,(getf entry :longname))
+		  (subclass-of ,term-uri !obo:NCRO_0004001)
+		  (subclass-of ,term-uri (object-some-values-from ,only-in-taxon ,term-species ))
+		  )) (break))))
+   (entries m))
+  )
   
 
 
