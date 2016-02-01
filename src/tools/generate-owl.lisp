@@ -1,6 +1,31 @@
+(def-uri-alias "definition" !obo:IAO_0000115)
+(def-uri-alias "editornote" !obo:IAO_0000116)
+(def-uri-alias "termeditor" !obo:IAO_0000117)
+(def-uri-alias "definitionsource" !obo:IAO_0000119)
+(def-uri-alias "onlyintaxon" !obo:RO_0002160)
+(def-uri-alias "alternativeterm" !obo:IAO_0000118)
+
+    
 (defmethod species-for-prefix ((m mirbase) prefix)
   (second (assoc prefix '(("hsa" !obo:NCBITaxon_9606)
-			  ("mmu" !obo:NCBITaxon_10090))
+			  ("mmu" !obo:NCBITaxon_10090)
+			  ("rno" !obo:NCBITaxon_10116)
+			  ("gga" !obo:NCBITaxon_9031)
+			  ("cel" !obo:NCBITaxon_6239)
+			  ("cfa" !obo:NCBITaxon_9615)
+			  ("dre" !obo:NCBITaxon_7955)
+			  ("dan" !obo:NCBITaxon_7217)
+			  ("der" !obo:NCBITaxon_7220)
+			  ("dgr" !obo:NCBITaxon_7222)
+			  ("dme" !obo:NCBITaxon_7227)
+			  ("dmo" !obo:NCBITaxon_7230)
+			  ("dpe" !obo:NCBITaxon_7234)
+			  ("dps" !obo:NCBITaxon_7237)
+			  ("dse" !obo:NCBITaxon_7238)
+			  ("dsi" !obo:NCBITaxon_7240)
+			  ("dvi" !obo:NCBITaxon_7244)
+			  ("dwi" !obo:NCBITaxon_7260)
+			  ("dya" !obo:NCBITaxon_7245))
 		 :test 'equal)))
   
 (defmethod uri-for-accession ((m mirbase) accession)
@@ -72,7 +97,11 @@ blah.
 	(and (#"matches" name "^(mmu|rno|d|cel|cfa|gga|dre)-.*")
 	     (let ((fam (gethash (#"replace" (getf entry :accession) ";" "") (member2family m))))
 	       (find-if (lambda(el) (#"matches" (getf (gethash (concatenate 'string el ";") (entries m)) :name) "hsa.*")) (gethash fam (family2member m))))))))
-    
+
+(defmethod human-entry ((m mirbase) entry)
+  (let* ((name (getf entry :name)))
+    (#"matches" name "hsa-.*")))
+
 ;; print out and count the mirna to include
 (defmethod debug-which-to-include ((m mirbase))
   (let ((count 0))(maphash 
@@ -89,15 +118,35 @@ blah.
      `(declaration (class ,subject))
      `(subclassof ,subject ,mirna-gene-product)
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=~a" family-accession)))
-     `(annotation-assertion !!definition ,subject
+     `(annotation-assertion !rdfs:label ,subject (format nil "miRNA family ~a" (gethash family-accession (accession2name m))))
+     `(annotation-assertion !definition ,subject
 		  ,(format nil "A miRNA gene product of human gene ~a on chromosome ~a at approximately position ~a-~a, or ortholog therof"
 			   (third (getf human-entry :gene))
 			   (#"replace" (first gene) "chr" "") (second gene) (third gene)))
+     `(annotation-assertion !alternativeterm ,subject ,family-accession)
      (loop for member in (gethash family-accession (family2member m))
 	for entry = (gethash (concatenate 'string member ";") (entries m))
 	when (human-or-model-in-human-family m entry)
 	collect
 	  `(subclassof ,(uri-for-accession m member) ,subject)))))
+
+(defmethod axioms-for-pri-mirna ((m mirbase) entry)
+  (let ((subject (uri-for-accession m (getf entry :accession)))
+	(gene (gethash (#"replace" (getf entry :accession) ";" "") (accession2gene m)))
+	(primary-mirna !obo:NCRO_0004018))
+    (list*
+     `(declaration (class ,subject))
+     `(annotation-assertion !rdfs:label (getf entry :longname))
+     (if (getf entry :description)
+	 `(annotation-assertion !!editor-note ,subject (getf entry :description)))
+     `(subclassof ,subject ,primary-mirna)
+     `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=" (getf entry :accession))))
+     `(annotation-assertion !definition ,subject
+			    ,(format nil "A miRNA gene product that is the primary transcript of human gene ~a"
+				     (third gene)))
+     `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix m (subseq (getf entry :name) 0 3))))
+     `(annotation-assertion !alternativeterm ,subject ,(getf entry :accession))
+     )))
 
 
 (defmethod axioms-for-matures ((m mirbase) entry)
@@ -113,42 +162,20 @@ blah.
 	  `(annotation-assertion !rdfs:label ,subject  ,name)
 	  `(subclassof ,subject ,pri-mirna-uri)
 	  `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=~a" accession)))
-	  `(annotation-assertion !!definition ,subject
-		       ,(format nil "A mature miRNA with sequence ~a" sequence)))))))
-				
-	  
+	  `(annotation-assertion !definition ,subject
+				 ,(format nil "A mature miRNA with sequence ~a" sequence))
+	  `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix (subseq (getf entry :name) 0 3))))
+	  `(annotation-assertion !alternativeterm ,subject ,accession)))))
 
-(defmethod axioms-for-pri-rna ((m mirbase) accession)
-  )
 
 (defmethod generate-mirbase-owl ((m mirbase))
   (with-ontology mirna (:collecting t)
-      ((asq (imports !obo:ncro.owl)
-  (maphash 
-   (lambda(accession entry) ;; iterate over stem loops
-     (let ((term-uri (ncro-uri m entry))
-	   (only-in-taxon !obo:RO_0002160)
-	   (alternative-term !IAO_0000118)
-	   (see-also )
-	   (mirbase-accession )
-	   (comment )
-	   (mirna-stem-loop)
-	   (mature-mirna )
-	   (mature-5prime mirna)
-	   (mature 3prime mirna)
-	   (sequence )
-	   (term-species (species-for-prefix m (subseq (car (getf entry :name)) 0 3)))
-	   (family-has-huamn 
-       (when term-species 
-	 (print `((declaration (class ,term-uri ))
-		  (annotation !rdfs:label ,(car (getf entry :name)))
-		  ,@(loop for label in (cdr (getf entry :name))
-		       collect 
-			 (list 'annotation alternative-term label))
-		  (annotation !oboinowl:hasDbXref ,accession)
-		  (annotation ,alternative-term ,(getf entry :longname))
-		  (subclass-of ,term-uri !obo:NCRO_0004001)
-		  (subclass-of ,term-uri (object-some-values-from ,only-in-taxon ,term-species ))
-		  )) (break))))
-   (entries m))
-  )
+      ((asq (imports !obo:ncro.owl))
+       (maphash 
+	(lambda(accession entry) ;; iterate over stem loops
+	  (when (human-or-model-in-human-family m entry)
+	    (as (axioms-for-pri-mirna m entry))
+	    (as (axioms-for-matures m entry))
+	    (when (human-entry m entry)
+	      (as (axioms-for-family m entry (gethash (getf entry :accession) (member2family m)))))))
+	(entries m)))))
