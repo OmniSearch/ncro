@@ -5,6 +5,7 @@
    (name2accession :accessor name2accession :initform (make-hash-table :test 'equalp))
    (member2family :accessor member2family :initform (make-hash-table :test 'equalp))
    (family2member :accessor family2member :initform (make-hash-table :test 'equalp))
+   (accession2sequence :accessor accession2sequence :initform (make-hash-table :test 'equalp))
    (entries :accessor entries :initform (make-hash-table :test 'equalp))
    (problem-families :initform '("MIPF0000783" "MIPF0000773" "MIPF0000153") :allocation :class :accessor problem-families) ; family name matches member name
    (ncro :allocation :class)
@@ -96,74 +97,93 @@
 
 ;; read the entries in miRNA.dat, only paying attention to accession, long name, description, and database references
 
+(defmethod create-entry ((m mirbase) accession name longname description sequence matures)
+  (setf (gethash accession (entries m))
+	`(:accession ,accession :name ,name :longname ,longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse description)) "\\s+" " ") :sequence ,sequence :matures ,matures))
+  )
+			 
 (defmethod read-entries ((m mirbase) &optional (families "ncro:src;mirbase;miRNA.dat"))
   (let ((state :nothing) 
-	(current-description nil)
-	(current-name nil)
-	(current-accession nil)
-	(current-longname nil)
-	(current-database-references nil))
+	(current-description nil) (current-name nil) (current-accession nil)
+	(current-longname nil) (current-database-references nil) (current-sequence nil)	(current-matures nil))
     (labels ((debug (string)
 	       (print string)
 	       (print-db state current-name current-accession current-description current-longname current-database-references))
 	     (finish-entry ()
-	       (setf (gethash current-accession (entries m))
-		     `(:accession ,current-accession :name ,current-name :longname ,current-longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse current-description)) "\\s+" " ")))
-	       (setq state :nothing current-members nil current-name nil current-accession nil current-description nil current-longname nil current-database-references nil))
-	     (set-accession (accession)
-	       (if current-accession
-		   (debug "accession twice in a record")
-		   (setq current-accession accession state :accession)
-		   ))
-	     (set-longname (string)
-	       (if current-longname
-		   (debug "already a long name")
-		   (setq current-longname string state :longname))
+	       (create-entry m current-accession current-name current-longname
+			     current-description current-sequence current-matures)
+	       (setq state :nothing current-members nil current-sequence nil
+		     current-name nil current-accession nil current-description nil
+		     current-longname nil current-database-references nil current-matures nil)
 	       )
-	     (set-current-name (string)
-	       (if current-name
-		   (debug "already a current name")
-		   (let ((parts (car (all-matches string "(.*?)\\s+(.*?); (.*?); (.*?); (.*?)." 1))))
-		     (setq current-name (car parts) state :name)))
-	       )
-	     (set-description (string)
-	       (push string current-description)
-	       (setq state :description))
-	     (set-database-references (string)
-	       (push string current-database-references)
-	       (setq state :references))
 	     (skip (where line field)
 	       (declare (ignore where line field))
-	       '(print-db where line field) ))
+	       '(print-db where line field) )
+	     )
       (with-open-file (f families :direction :input)
-	(loop for line = (read-line f nil :eof)
+	(loop with peeked
+	   for line = (or peeked (read-line f nil :eof))
 	   until (eq line :eof)
 	   for (field  restline) = (car (all-matches line "(..)\\s*(.*)" 1 2))
 	   do
+	     (setq peeked nil)
 	     (if (eq state :sequence)
 		 (if (not (equal field "//"))
 		     (skip "sequence" line field)
 		     (finish-entry))
 		 (cond ((equal field "//")
 			(finish-entry))
-		       ((member field '("RA" "RN" "RT" "RL"  "FH" "FT" "RC" "RX" "XX") :test 'equalp) (skip "member" line field))
+		       ((member field '("RA" "RN" "RT" "RL"  "FH" "RC" "RX" "XX") :test 'equalp) (skip "member" line field))
 		       ((equal field "ID")
-		        (set-current-name restline))
+			(if current-name
+			    (debug "already a current name")
+			    (let ((parts (car (all-matches restline "(.*?)\\s+(.*?); (.*?); (.*?); (.*?)." 1))))
+			      (setq current-name (car parts) state :name))))
 		       ((equal field "AC")
-			(set-accession restline))
+			(if current-accession
+			    (debug "accession twice in a record")
+			    (setq current-accession restline state :accession)
+			    ))
 		       ((equal field "DE")
-			(set-longname restline))
+			(if current-longname
+			    (debug "already a long name")
+			    (setq current-longname restline state :longname)))
 		       ((equal field "DR")
-			(set-database-references restline))
+			(push restline current-database-references))
 		       ((equal field "CC")
-			(set-description restline))
+			(push restline current-description))
 		       ((equal field "SQ")
 			(setq state :sequence)
-			(skip "SQ" line field)
-			)
+			(loop for line = (read-line f) until (equal line "//") collect line into lines
+			   finally
+			     (let ((concat (apply 'concatenate 'string lines)))
+			       (setq concat (#"replaceAll" concat "\\d|\\s" ""))
+			       (unless (#"matches" concat "^[ucgarywsmkhbvdn]+$") (format t "misread sequence for ~a: ~a~%" current-accession concat))
+			       (setq current-sequence concat)
+			       (finish-entry))))
+			 
+		       ((equal field "FT")
+			(if (#"matches" line "^FT\\s+(modified_base|Key).*")
+			    (read-line f)
+			    (destructuring-bind (&optional from to)
+				(car (all-matches restline "miRNA\\s+(\\d+)\\.\\.(\\d+)" 1 2))
+			      (unless (and from to) (break))
+			      (loop for line = (read-line f nil :eof)
+				 with props
+				 until (or (#"matches" line "^FT\\s+miRNA.*") (not (#"matches" line "^FT.*")))
+				 do (destructuring-bind (&optional key value)
+					(car (all-matches line "FT\\s+/(\\w+)=\"([^\"]+)" 1 2))
+				      (and key
+					   (push (list (intern (string-upcase (string key)) 'keyword) value) props))
+				      )
+				 finally
+				   (progn
+				     (push `((:from ,from) (:to ,to) ,@props) current-matures)
+				     (setq peeked line))))))
 		       (t (debug (format nil "unexpected line: '~a'" line)))))
 	   finally (if (and current-accession (not (eq state :nothing)))
-		       (finish-entry)))))))
+		       (finish-entry))
+	     )))))
 
 (defmethod check-ncro-mirna-against-mirbase ((m mirbase) &optional (ontology-file "ncro:src;ontology;ncro.owl"))
   (unless (and (slot-boundp m 'ncro) (slot-value m 'ncro))
@@ -210,10 +230,81 @@
 		  )) (break))))
    (entries m))
   )
-  
+
+;; Using the FT annotations and the stem loop sequence, compute the mature sequence
+;; So far spot-checked - should validate with independent source
+(defmethod compute-mature-sequence ((m mirbase))
+  (maphash (lambda(accession entry)
+	     (loop for mature in (getf entry :matures)
+		for from = (second (assoc :from mature))
+		for to = (second (assoc :to mature))
+		do
+		  (cond ((and from (not to)) (and to (not from))
+			 (warn "~a mature sequence not delimited well; ~a" accession mature))
+			((not (or from to)) (print-db entry mature from to) (break))
+			(t (nconc mature `((:sequence ,(subseq  (getf entry :sequence) (1- (read-from-string from)) (read-from-string to)))))))))
+	   (entries m)))
+		  
+;; check if any of the sequence letters are other than the standard
+;; uagc (shouldn't be, even though the stem loop sequence may be
+;; ambiguous
+
+(defmethod ambiguous-mature-sequences ((m mirbase))
+  (maphash (lambda(accession entry)
+	     (loop for mature in (getf entry :matures)
+		for sequence = (second (assoc :sequence mature))
+		when (not (#"matches" sequence "^[uagc]+$"))
+		  do (warn "ambiguous mature sequence for ~a: ~a" accession sequence)))
+	   (entries m)))
 
 
 #|
+
+CiteXplore was withdrawn from service on 15 February 2013, replaced by Europe PubMed Central
+https://github.com/ebi-chebi/ChEBI/issues/3134
+
+Family level
+ Gene level (species specific - gene product of .... )
+   sequence level (with stem loop)
+   sequence level (after stem loop removed) (derives from above)
+   mature (single stranded 20-24nt) (derives from above)
+    5' 
+    3' 
+
+When two mature microRNAs originate from opposite arms of the same
+pre-miRNA and are found in roughly similar amounts, they are denoted
+with a -3p or -5p suffix. (In the past, this distinction was also made
+with 's' (sense) and 'as' (antisense)). However, the mature microRNA
+found from one arm of the hairpin is usually much more abundant than
+that found from the other arm,[2] in which case, an asterisk following
+the name indicates the mature species found at low levels from the
+opposite arm of a hairpin. For example, miR-124 and miR-124* share a
+pre-miRNA hairpin, but much more miR-124 is found in the cell
+
+http://www.chem.qmul.ac.uk/iupac/bibliog/white.html
+http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html
+3. Allocation of symbols
+3.1. Guanine. adenine, thymine, cytosine: G,A,T,C
+3.2. Purine (adenine or guanine): R
+3.3. Pyrimidine (thymine or cytosine): Y
+3.4. Adenine or thymine: W
+3.5. Guanine or cytosine: S
+3.6. Adenine or cytosine: M
+3.7. Guanine or thymine: K
+3.8. Adenine or thymine or cytosine: H
+3.9. Guanine or cytosine or thymine: B
+3.10. Guanine or adenine or cytosine: V
+3.11. Guanine or adenine or thymine: D
+3.12. Guanine or adenine or thymine or cytosine: N
+
+FT   miRNA           17..38
+FT                   /accession="MIMAT0000001"
+FT                   /product="cel-let-7-5p"
+FT                   /evidence=experimental
+FT                   /experiment="cloned [1-3], Northern [1], PCR [4], 454 [5],
+FT                   Illumina [6], CLIPseq [7]"
+
+
 miFAM.dat - entries
 AC - Accession 
 ID - ID
