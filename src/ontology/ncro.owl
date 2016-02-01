@@ -17,6 +17,7 @@
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/obi-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/clo-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ro-imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncro-mirna.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/pr-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/uberon-imports.owl"/>
@@ -26,7 +27,6 @@
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncbi_taxon-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/so-imports.owl"/>
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ncro/dev/ncro-mirna.owl"/>
         <dc:contributor>Harrison Strachan</dc:contributor>
         <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/ncro/issues"/>
         <rdfs:seeAlso rdf:resource="http://purl.obolibrary.org/obo/ncro/repository"/>
@@ -586,7 +586,6 @@
     
 
 
-
     <!-- http://purl.obolibrary.org/obo/NCRO_0004000 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004000">
@@ -603,11 +602,17 @@
     <!-- http://purl.obolibrary.org/obo/NCRO_0004001 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004001">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
-        <IAO_0000115>A short (20-24 nt) non-coding RNA that is involved in post-transcriptional regulation of gene expression in multicellular organisms by affecting both the stability and translation of mRNAs. miRNAs are transcribed by RNA polymerase II as part of capped and polyadenylated primary transcripts (pri-miRNAs) that can be either protein-coding or non-coding. The primary transcript is cleaved by the Drosha ribonuclease III enzyme to produce an approximately 70-nt stem-loop precursor miRNA (pre-miRNA), which is further cleaved by the cytoplasmic Dicer ribonuclease to generate the mature miRNA and antisense miRNA star (miRNA*) products. The mature miRNA is incorporated into a RNA-induced silencing complex (RISC), which recognizes target mRNAs through imperfect base pairing with the miRNA and most commonly results in translational inhibition or destabilization of the target mRNA.</IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004019"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0001000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004021"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <IAO_0000115>A short (20-24 nt) miRNA gene product that is derived from pre-miRNA that is exported from the nucleus and is capable of being involved in post-transcriptional regulation of gene expression in multicellular organisms by affecting both the stability and translation of mRNAs after being incorporated into a RNA-induced silencing complex (RISC), which recognizes target mRNAs through imperfect base pairing with the miRNA.</IAO_0000115>
         <IAO_0000117>Alan Ruttenberg</IAO_0000117>
         <IAO_0000119>RefSeq, Sep 2009</IAO_0000119>
-        <rdfs:label xml:lang="en">miRNA</rdfs:label>
+        <rdfs:label xml:lang="en">mature miRNA</rdfs:label>
     </owl:Class>
     
 
@@ -694,6 +699,61 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="en">miRNA target disposition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0004018 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004018">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004021"/>
+        <IAO_0000115>A miRNA gene product which is capped, inside the nucleus, with a specially modified nucleotide at the 5’ end, polyadenylated with multiple adenosines (a poly(A) tail),[49][53] and spliced, forming an RNA stem-loop that in turn is part of this miRNA precursor</IAO_0000115>
+        <IAO_0000117>Alan Ruttenberg</IAO_0000117>
+        <IAO_0000119>Refseq, Wikipedia</IAO_0000119>
+        <rdfs:label xml:lang="en">primary miRNA</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0004019 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004019">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004000"/>
+        <IAO_0000115>A non-coding RNA product initially transcribed from a DNA gene, or derived from such RNA by post-transcriptional processing to become capable of forming part of a RNA silencing complex and participating in gene silencing.</IAO_0000115>
+        <IAO_0000116>Alan Ruttenberg 2016-02-01: Stance on identity: pri-miNRA, pre-miRNA, and mature miRNA are disjoint. It is a process of derivation that results first from pri-miRNA to pre-miRNA then to miRNA. The identity of an miRNA gene product is determined by the molecule from which it is transcribed or derived and by its own nucleotide sequence.
+
+We have to be careful in the definitions to not undermine this position.</IAO_0000116>
+        <IAO_0000117>Alan Ruttenberg</IAO_0000117>
+        <rdfs:label xml:lang="en">miRNA gene product</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0004020 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004020">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004021"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0001000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004018"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <IAO_0000115>A miRNA gene product cleaved from a pri-miRNA by Drosha ribonuclease III enzyme to produce an approximately 70-nt stem-loop precursor to mature miRNA, which is cleaved from the pre-miRNA by cytoplasmic Dicer ribonuclease .</IAO_0000115>
+        <IAO_0000117>Alan Ruttenberg</IAO_0000117>
+        <IAO_0000119>Refseq, Wikipedia</IAO_0000119>
+        <rdfs:label xml:lang="en">pre-miRNA</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCRO_0004021 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCRO_0004021">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCRO_0004019"/>
+        <IAO_0000115>An miRNA gene product from which a mature miRNA is capable of being derived.</IAO_0000115>
+        <IAO_0000117>Alan Ruttenberg</IAO_0000117>
+        <rdfs:label xml:lang="en">miRNA precursor</rdfs:label>
     </owl:Class>
     
 
