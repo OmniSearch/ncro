@@ -94,10 +94,12 @@ blah.
 ;; human, mouse, rat, c-elegams, dros, dog, cow, chicken, zfin
 (defmethod human-or-model-in-human-family ((m mirbase) entry)
   (let* ((name (getf entry :name)))
-    (or (#"matches" name "hsa-.*")
+    (or (and (#"matches" name "hsa-.*") entry)
 	(and (#"matches" name "^(mmu|rno|d|cel|cfa|gga|dre)-.*")
 	     (let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
-	       (find-if (lambda(el) (#"matches" (getf (gethash (concatenate 'string el ";") (entries m)) :name) "hsa.*")) (gethash fam (family2member m))))))))
+	       (find-if (lambda(el) (#"matches" (getf el :name) "hsa.*")) 
+			(mapcar (lambda (el) (gethash (concatenate 'string el ";") (entries m)))
+				(gethash fam (family2member m)))))))))
 
 (defmethod human-entry ((m mirbase) entry)
   (let* ((name (getf entry :name)))
@@ -111,6 +113,7 @@ blah.
        (print (getf entry :name)) (incf count)))
      (entries m)) count))
 
+;; FIXME This could be called more than once because of more than one human entry for a family
 (defmethod axioms-for-family ((m mirbase) human-entry family-accession)
   (let ((subject (uri-for-accession m family-accession))
 	(gene (gethash (#"replace" (getf human-entry :accession) ";" "") (accession2gene m)))
@@ -121,9 +124,9 @@ blah.
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=~a" family-accession)))
      `(annotation-assertion !rdfs:label ,subject ,(format nil "miRNA family ~a" (gethash family-accession (accession2name m))))
      `(annotation-assertion !definition ,subject
-		  ,(format nil "A miRNA gene product of human gene ~a on chromosome ~a at approximately position ~a-~a, or ortholog therof"
-			   (third (getf human-entry :gene))
-			   (#"replace" (first gene) "chr" "") (second gene) (third gene)))
+		  ,(format nil "A miRNA gene product of human gene ~aon chromosome ~a at approximately position ~a-~a, or ortholog therof"
+			   (or (third (getf human-entry :gene)) " ") ;;; FIXME - why missing gene name sometimes
+			   (if (second gene) (#"replace" (second gene) "chr" "") "<fixme>") (or (third gene) "<fixme>") (or (fourth gene) "<fixme>")))
      `(annotation-assertion !alternativeterm ,subject ,family-accession)
      (loop for member in (gethash family-accession (family2member m))
 	for entry = (gethash (concatenate 'string member ";") (entries m))
@@ -131,27 +134,26 @@ blah.
 	collect
 	  `(subclassof ,(uri-for-accession m member) ,subject)))))
 
-(defmethod axioms-for-pri-mirna ((m mirbase) entry)
+(defmethod axioms-for-pre-mirna ((m mirbase) entry human-entry)
   (let ((subject (uri-for-accession m (#"replaceAll" (getf entry :accession) ";" "")))
-	(gene (gethash (#"replaceAll" (getf entry :accession) ";" "") (accession2gene m)))
-	(primary-mirna !obo:NCRO_0004018))
+	(gene (gethash (#"replaceAll" (getf human-entry :accession) ";" "") (accession2gene m)))
+	(pre-mirna !obo:NCRO_0004020))
     (list
      `(declaration (class ,subject))
      `(annotation-assertion !rdfs:label ,subject ,(getf entry :longname))
      (if (getf entry :description)
-	 `(annotation-assertion !!editor-note ,subject ,(getf entry :description)))
-     `(subclassof ,subject ,primary-mirna)
+	 `(annotation-assertion !editornote ,subject ,(getf entry :description)))
+     `(subclassof ,subject ,pre-mirna)
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=" (getf entry :accession))))
      `(annotation-assertion !definition ,subject
-			    ,(format nil "A miRNA gene product that is the primary transcript of human gene ~a"
-				     (third gene)))
+			    ,(format nil "A pre-miRNA processed from the primary transcript~a of human gene ~a" (if (eq entry human-entry) "" (format nil " of a ~a ortholog" 'species)) (first gene)))
      `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix m (subseq (getf entry :name) 0 3))))
-     `(annotation-assertion !alternativeterm ,subject ,(getf entry :accession))
+     `(annotation-assertion !alternativeterm ,subject ,(#"replaceAll" (getf entry :accession) ";" ""))
      )))
 
 
 (defmethod axioms-for-matures ((m mirbase) entry)
-  (let ((pri-mirna-uri  (uri-for-accession m (#"replaceAll" (getf entry :accession) ";" "")))
+  (let ((pre-mirna-uri  (uri-for-accession m (#"replaceAll" (getf entry :accession) ";" "")))
 	(family (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
     (loop for mature in (getf entry :matures)
        for sequence = (second (assoc :sequence mature))
@@ -164,7 +166,7 @@ blah.
 	  `(annotation-assertion !rdfs:label ,subject  ,name)
 	  `(subclassof ,subject !maturemirna)
 	  (when family `(subclassof ,subject ,(uri-for-accession m family)))
-	  `(subclassof ,subject (object-some-values-from !derivesfrom ,pri-mirna-uri))
+	  `(subclassof ,subject (object-some-values-from !derivesfrom ,pre-mirna-uri))
 	  `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=~a" accession)))
 	  `(annotation-assertion !definition ,subject
 				 ,(format nil "A mature miRNA with sequence ~a" sequence))
@@ -177,13 +179,14 @@ blah.
       ((asq (imports !obo:ncro.owl))
        (maphash 
 	(lambda(accession entry) ;; iterate over stem loops
-	  (when (human-or-model-in-human-family m entry)
-	    (as (axioms-for-pri-mirna m entry))
-	    (as (axioms-for-matures m entry))
-	    (when (human-entry m entry)
-	      (let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
-		(when fam
-		  (as (axioms-for-family m entry (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m)))))))))
+	  (let ((human-entry (human-or-model-in-human-family m entry)))
+	    (when human-entry
+	      (as (axioms-for-pre-mirna m entry human-entry))
+	      (as (axioms-for-matures m entry))
+	      (when (human-entry m entry)
+		(let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
+		  (when fam
+		    (as (axioms-for-family m entry (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))))))))
 	(entries m)))
-    (write-rdfxml mirna "~/Desktop/mirna.owl")
+    (write-rdfxml mirna "~/Desktop/ncro-mirna.owl")
     ))

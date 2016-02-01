@@ -13,7 +13,7 @@
   ))
 
 ;; reads the alias file, which maps miRBase identifiers with labels
-(defmethod read-aliases ((m mirbase) &optional (aliases "ncro:src;mirbase;aliases.txt"))
+(defmethod read-aliases ((m mirbase) &optional (aliases "ncro:src;mirbase;21;aliases.txt"))
   (with-open-file (f aliases :direction :input)
     (loop with 2name = (accession2name m)
        with 2accession = (name2accession m)
@@ -39,7 +39,7 @@
 
 ;; read the families file and build tables mapping members to families and vice versa
 
-(defmethod read-families ((m mirbase) &optional (families "ncro:src;mirbase;miFam.dat"))
+(defmethod read-families ((m mirbase) &optional (families "ncro:src;mirbase;21;miFam.dat"))
   (let ((state :nothing) (current-members nil) (current-id nil) (current-accession nil))
     (labels ((debug (string)
 	       (print string)
@@ -103,7 +103,7 @@
 	`(:accession ,accession :gene (:hgnc ,@hgnc) :name ,name :longname ,longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse description)) "\\s+" " ") :sequence ,sequence :matures ,matures))
   )
 			 
-(defmethod read-entries ((m mirbase) &optional (families "ncro:src;mirbase;miRNA.dat"))
+(defmethod read-entries ((m mirbase) &optional (families "ncro:src;mirbase;21;miRNA.dat"))
   (let ((state :nothing) 
 	(current-description nil) (current-name nil) (current-accession nil)
 	(current-longname nil) (current-database-references nil) (current-sequence nil)	(current-matures nil)
@@ -153,8 +153,8 @@
 			    (setq current-longname restline state :longname)))
 		       ((equal field "DR")
 			;; DR   HGNC; 35259; MIR1178.
-			(let ((hgnc (car (all-matches restline "HGNC;\\s*(\\d+);\\s*(.*)\\." 1 2))))
-			  (setq current-hgnc hgnc)
+			(let ((hgnc (car (all-matches restline "(HGNC|ENTREZGENE);\\s*(\\d+);\\s*(.*)\\." 2 3))));; FIXME - not all gene names are from HGNC
+			  (and hgnc (setq current-hgnc hgnc))
 			  (push restline current-database-references)))
 		       ((equal field "CC")
 			(push restline current-description))
@@ -210,7 +210,7 @@
 
 ;; chr1	.	miRNA_primary_transcript	17369	17436	.	-	.	ID=MI0022705;Alias=MI0022705;Name=hsa-mir-6859-1
 
-(defmethod read-human-gene-positions ((m mirbase) &optional (file "ncro:src;mirbase;genomes;hsa.gff3"))
+(defmethod read-human-gene-positions ((m mirbase) &optional (file "ncro:src;mirbase;21;genomes;hsa.gff3"))
   (with-open-file (f file :direction :input)
     ;; skip comments
     (loop for peek = (peek-char nil f)
@@ -220,7 +220,7 @@
        until (eq line :eof)
        for (chromosome nil nil from to nil nil nil which) = (split-at-char line #\tab)
        for id = (caar (all-matches which "ID=(MI\\d+);" 1))
-       do (setf (gethash id (accession2gene m)) (list chromosome from to)))))
+       do (setf (gethash id (accession2gene m)) (list (third (getf (gethash (concatenate 'string id ";") (entries m)) :gene)) chromosome from to)))))
 
 ;; Using the FT annotations and the stem loop sequence, compute the mature sequence
 ;; So far spot-checked - should validate with independent source

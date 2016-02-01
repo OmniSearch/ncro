@@ -6,7 +6,6 @@ NCBITaxon
 
 [Low level source term URIs]
 http://purl.obolibrary.org/obo/NCBITaxon_9606
-http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_2 # (bacteria)
 http://purl.obolibrary.org/obo/NCBITaxon_6239 # (c. elegans)
 http://purl.obolibrary.org/obo/NCBITaxon_7215 # fly
@@ -28,11 +27,11 @@ http://purl.obolibrary.org/obo/NCBITaxon_7240 #dsi
 http://purl.obolibrary.org/obo/NCBITaxon_7244 #dvi
 http://purl.obolibrary.org/obo/NCBITaxon_7260 #dwi
 http://purl.obolibrary.org/obo/NCBITaxon_7245 #dya
-
+http://purl.obolibrary.org/obo/NCBITaxon_40674 #mammalia
 
 [Top level source term URIs and target direct superclass URIs]
-http://purl.obolibrary.org/obo/NCBITaxon_40674
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+http://purl.obolibrary.org/obo/NCBITaxon_9606
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_2 # (bacteria)
 subClassOf http://purl.obolibrary.org/obo/OBI_0100026
 http://purl.obolibrary.org/obo/NCBITaxon_6239 # (c. elegans)
@@ -42,39 +41,39 @@ subClassOf http://purl.obolibrary.org/obo/OBI_0100026
 http://purl.obolibrary.org/obo/NCBITaxon_10239 #Virus
 subClassOf http://purl.obolibrary.org/obo/OBI_0100026
 http://purl.obolibrary.org/obo/NCBITaxon_10090 #mmu
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_10116 #rno
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_9031 #gga
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_9615 #cfa
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_40674
 http://purl.obolibrary.org/obo/NCBITaxon_7955 #dre
 subClassOf http://purl.obolibrary.org/obo/OBI_0100026
 http://purl.obolibrary.org/obo/NCBITaxon_7217 #dan
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7220 #der
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7222 #dgr
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7227 #dme
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7230 #dmo
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7234 #dpe
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7237 #dps
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7238 #dse
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7240 #dsi
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7244 #dvi
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7260 #dwi
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 http://purl.obolibrary.org/obo/NCBITaxon_7245 #dya
-subClassOf http://purl.obolibrary.org/obo/OBI_0100026
+subClassOf http://purl.obolibrary.org/obo/NCBITaxon_7215
 
 [Source term retrieval setting]
 includeNoIntermediates
