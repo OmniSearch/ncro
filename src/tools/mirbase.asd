@@ -12,5 +12,6 @@
   :author "Alan Ruttenberg"
   :license "BSD"
   :components
-  ((:file "mirbase")))
+  ((:file "parse-mirbase")
+   (:file "generate-owl")))
 

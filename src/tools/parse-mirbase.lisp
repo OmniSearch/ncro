@@ -248,6 +248,14 @@
 		  do (warn "ambiguous mature sequence for ~a: ~a" accession sequence)))
 	   (entries m)))
 
+(defun parse-mirbase ()
+  (let ((m (make-instance 'mirbase)))
+    (read-aliases m)
+    (read-entries m)
+    (read-families m)
+    (compute-mature-sequence m)
+    (read-human-gene-positions m)
+    m))
 
 #|
 

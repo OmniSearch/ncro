@@ -1,3 +1,4 @@
+;; common terms.
 (def-uri-alias "definition" !obo:IAO_0000115)
 (def-uri-alias "editornote" !obo:IAO_0000116)
 (def-uri-alias "termeditor" !obo:IAO_0000117)
@@ -32,14 +33,14 @@
 (defmethod uri-for-accession ((m mirbase) accession)
   (make-uri (format nil "http://purl.obolibrary.org/NCRO_~a" accession)))
 
-
+#|
 The issue here is how to align what is wanted (as best I can guess)
 from NCRO and the work that has been done already, primary the
 associate with miRBase. Currently the dxref is to miRBase records that
-appear to denote pri-miRNA. I conclude this because the sequences
-given include the intact stem-loop and because miRBase has different
-entries for mature miRNA (the MIMATxxx records). While pri-miRNA are
-polytadenylated, it is common to omit this from the sequence.
+appear to denote pre-miRNA. I conclude this because the sequences
+given include the intact stem-loop and modified caps but not the
+poly-a and because miRBase has different entries for mature miRNA (the
+MIMATxxx records).
 
 NCRO initially mixes these records. We have, for example,
 
@@ -60,7 +61,7 @@ The mature forms are not related to the stem loops in the original.
 
 Since both stem loops and mature are present in NCRO (albeit not well
 distinguished) we should include both, with a derived-from link from
-mature to pri. (derivation is transitive)
+mature to pre. (derivation is transitive)
 
 Now families. The question is whether the families are computational
 artifacts or evolutionary relationship. From reading the paper it
@@ -88,8 +89,7 @@ name in the definition.
 
 The families can be named by the human gene - blah or orthologous to
 blah.
-
-
+|#
 
 ;; human, mouse, rat, c-elegams, dros, dog, cow, chicken, zfin
 (defmethod human-or-model-in-human-family ((m mirbase) entry)
