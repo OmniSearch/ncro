@@ -4,8 +4,9 @@
 (def-uri-alias "definitionsource" !obo:IAO_0000119)
 (def-uri-alias "onlyintaxon" !obo:RO_0002160)
 (def-uri-alias "alternativeterm" !obo:IAO_0000118)
+(def-uri-alias "derivesfrom" !obo:RO_0001000)
+(def-uri-alias "maturemirna" !obo:NCRO_0004001)
 
-    
 (defmethod species-for-prefix ((m mirbase) prefix)
   (second (assoc prefix '(("hsa" !obo:NCBITaxon_9606)
 			  ("mmu" !obo:NCBITaxon_10090)
@@ -95,7 +96,7 @@ blah.
   (let* ((name (getf entry :name)))
     (or (#"matches" name "hsa-.*")
 	(and (#"matches" name "^(mmu|rno|d|cel|cfa|gga|dre)-.*")
-	     (let ((fam (gethash (#"replace" (getf entry :accession) ";" "") (member2family m))))
+	     (let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
 	       (find-if (lambda(el) (#"matches" (getf (gethash (concatenate 'string el ";") (entries m)) :name) "hsa.*")) (gethash fam (family2member m))))))))
 
 (defmethod human-entry ((m mirbase) entry)
@@ -118,7 +119,7 @@ blah.
      `(declaration (class ,subject))
      `(subclassof ,subject ,mirna-gene-product)
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=~a" family-accession)))
-     `(annotation-assertion !rdfs:label ,subject (format nil "miRNA family ~a" (gethash family-accession (accession2name m))))
+     `(annotation-assertion !rdfs:label ,subject ,(format nil "miRNA family ~a" (gethash family-accession (accession2name m))))
      `(annotation-assertion !definition ,subject
 		  ,(format nil "A miRNA gene product of human gene ~a on chromosome ~a at approximately position ~a-~a, or ortholog therof"
 			   (third (getf human-entry :gene))
@@ -131,14 +132,14 @@ blah.
 	  `(subclassof ,(uri-for-accession m member) ,subject)))))
 
 (defmethod axioms-for-pri-mirna ((m mirbase) entry)
-  (let ((subject (uri-for-accession m (getf entry :accession)))
-	(gene (gethash (#"replace" (getf entry :accession) ";" "") (accession2gene m)))
+  (let ((subject (uri-for-accession m (#"replaceAll" (getf entry :accession) ";" "")))
+	(gene (gethash (#"replaceAll" (getf entry :accession) ";" "") (accession2gene m)))
 	(primary-mirna !obo:NCRO_0004018))
-    (list*
+    (list
      `(declaration (class ,subject))
-     `(annotation-assertion !rdfs:label (getf entry :longname))
+     `(annotation-assertion !rdfs:label ,subject ,(getf entry :longname))
      (if (getf entry :description)
-	 `(annotation-assertion !!editor-note ,subject (getf entry :description)))
+	 `(annotation-assertion !!editor-note ,subject ,(getf entry :description)))
      `(subclassof ,subject ,primary-mirna)
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=" (getf entry :accession))))
      `(annotation-assertion !definition ,subject
@@ -150,26 +151,29 @@ blah.
 
 
 (defmethod axioms-for-matures ((m mirbase) entry)
-  (let ((pri-mirna-uri  (uri-for-accession m (getf entry :accession))))
+  (let ((pri-mirna-uri  (uri-for-accession m (#"replaceAll" (getf entry :accession) ";" "")))
+	(family (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
     (loop for mature in (getf entry :matures)
        for sequence = (second (assoc :sequence mature))
        for name = (second (assoc :product mature))
        for accession = (second (assoc :accession mature))
        for subject = (uri-for-accession m accession)
-       collect
+       append
 	 (list
 	  `(declaration (class ,subject))
 	  `(annotation-assertion !rdfs:label ,subject  ,name)
-	  `(subclassof ,subject ,pri-mirna-uri)
+	  `(subclassof ,subject !maturemirna)
+	  (when family `(subclassof ,subject ,(uri-for-accession m family)))
+	  `(subclassof ,subject (object-some-values-from !derivesfrom ,pri-mirna-uri))
 	  `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=~a" accession)))
 	  `(annotation-assertion !definition ,subject
 				 ,(format nil "A mature miRNA with sequence ~a" sequence))
-	  `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix (subseq (getf entry :name) 0 3))))
+	  `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix m (subseq (getf entry :name) 0 3))))
 	  `(annotation-assertion !alternativeterm ,subject ,accession)))))
 
 
 (defmethod generate-mirbase-owl ((m mirbase))
-  (with-ontology mirna (:collecting t)
+  (with-ontology mirna (:collecting t :ontology-iri "http://purl.obolibrary.org/obo/ncro/dev/ncro-mirna.owl");; :only-return-axioms t :also-return-axioms t)
       ((asq (imports !obo:ncro.owl))
        (maphash 
 	(lambda(accession entry) ;; iterate over stem loops
@@ -177,5 +181,9 @@ blah.
 	    (as (axioms-for-pri-mirna m entry))
 	    (as (axioms-for-matures m entry))
 	    (when (human-entry m entry)
-	      (as (axioms-for-family m entry (gethash (getf entry :accession) (member2family m)))))))
-	(entries m)))))
+	      (let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
+		(when fam
+		  (as (axioms-for-family m entry (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m)))))))))
+	(entries m)))
+    (write-rdfxml mirna "~/Desktop/mirna.owl")
+    ))
