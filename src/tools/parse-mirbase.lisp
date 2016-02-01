@@ -5,6 +5,7 @@
    (name2accession :accessor name2accession :initform (make-hash-table :test 'equalp))
    (member2family :accessor member2family :initform (make-hash-table :test 'equalp))
    (family2member :accessor family2member :initform (make-hash-table :test 'equalp))
+   (accession2gene :accessor accession2gene :initform (make-hash-table :test 'equalp))
    (accession2sequence :accessor accession2sequence :initform (make-hash-table :test 'equalp))
    (entries :accessor entries :initform (make-hash-table :test 'equalp))
    (problem-families :initform '("MIPF0000783" "MIPF0000773" "MIPF0000153") :allocation :class :accessor problem-families) ; family name matches member name
@@ -97,24 +98,26 @@
 
 ;; read the entries in miRNA.dat, only paying attention to accession, long name, description, and database references
 
-(defmethod create-entry ((m mirbase) accession name longname description sequence matures)
+(defmethod create-entry ((m mirbase) accession name longname description sequence matures hgnc)
   (setf (gethash accession (entries m))
-	`(:accession ,accession :name ,name :longname ,longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse description)) "\\s+" " ") :sequence ,sequence :matures ,matures))
+	`(:accession ,accession :gene (:hgnc ,@hgnc) :name ,name :longname ,longname :description ,(#"replaceAll" (format nil "~{~a~^ ~}" (reverse description)) "\\s+" " ") :sequence ,sequence :matures ,matures))
   )
 			 
 (defmethod read-entries ((m mirbase) &optional (families "ncro:src;mirbase;miRNA.dat"))
   (let ((state :nothing) 
 	(current-description nil) (current-name nil) (current-accession nil)
-	(current-longname nil) (current-database-references nil) (current-sequence nil)	(current-matures nil))
+	(current-longname nil) (current-database-references nil) (current-sequence nil)	(current-matures nil)
+	(current-hgnc nil))
     (labels ((debug (string)
 	       (print string)
 	       (print-db state current-name current-accession current-description current-longname current-database-references))
 	     (finish-entry ()
 	       (create-entry m current-accession current-name current-longname
-			     current-description current-sequence current-matures)
+			     current-description current-sequence current-matures current-hgnc)
 	       (setq state :nothing current-members nil current-sequence nil
 		     current-name nil current-accession nil current-description nil
-		     current-longname nil current-database-references nil current-matures nil)
+		     current-longname nil current-database-references nil current-matures nil
+		     current-hgnc nil)
 	       )
 	     (skip (where line field)
 	       (declare (ignore where line field))
@@ -149,7 +152,10 @@
 			    (debug "already a long name")
 			    (setq current-longname restline state :longname)))
 		       ((equal field "DR")
-			(push restline current-database-references))
+			;; DR   HGNC; 35259; MIR1178.
+			(let ((hgnc (car (all-matches restline "HGNC;\\s*(\\d+);\\s*(.*)\\." 1 2))))
+			  (setq current-hgnc hgnc)
+			  (push restline current-database-references)))
 		       ((equal field "CC")
 			(push restline current-description))
 		       ((equal field "SQ")
@@ -202,7 +208,19 @@
 	       (when (not (member label lookup-names :test 'equal))
 		 (format t "~a	~{~a~^;~}		~a	~a~%" mirbase-accession lookup-names label (gethash label (name2accession m))))))))))
 
+;; chr1	.	miRNA_primary_transcript	17369	17436	.	-	.	ID=MI0022705;Alias=MI0022705;Name=hsa-mir-6859-1
 
+(defmethod read-human-gene-positions ((m mirbase) &optional (file "ncro:src;mirbase;genomes;hsa.gff3"))
+  (with-open-file (f file :direction :input)
+    ;; skip comments
+    (loop for peek = (peek-char nil f)
+       until (not (char= peek #\#))
+       do (read-line f))
+    (loop for line = (read-line f nil :eof)
+       until (eq line :eof)
+       for (chromosome nil nil from to nil nil nil which) = (split-at-char line #\tab)
+       for id = (caar (all-matches which "ID=(MI\\d+);" 1))
+       do (setf (gethash id (accession2gene m)) (list chromosome from to)))))
 
 ;; Using the FT annotations and the stem loop sequence, compute the mature sequence
 ;; So far spot-checked - should validate with independent source
