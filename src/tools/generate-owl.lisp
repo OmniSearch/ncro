@@ -7,28 +7,36 @@
 (def-uri-alias "alternativeterm" !obo:IAO_0000118)
 (def-uri-alias "derivesfrom" !obo:RO_0001000)
 (def-uri-alias "maturemirna" !obo:NCRO_0004001)
+(def-uri-alias "disjointkey" !obo:ncro-family-disjoint-key)
+
+(defparameter *species-uri-association*
+  '(("hsa" !obo:NCBITaxon_9606 "Homo sapiens")
+    ("mmu" !obo:NCBITaxon_10090 "Mus musculus")
+    ("rno" !obo:NCBITaxon_10116 "Rattus norvegicus")
+    ("gga" !obo:NCBITaxon_9031 "Gallus gallus")
+    ("cel" !obo:NCBITaxon_6239 "C.elegans")
+    ("cfa" !obo:NCBITaxon_9615 "Canis lupus familiaris")
+    ("dre" !obo:NCBITaxon_7955 "Danio rerio")
+    ("dan" !obo:NCBITaxon_7217 "Drosophila ananassae")
+    ("der" !obo:NCBITaxon_7220 "Drosophila erectus")
+    ("dgr" !obo:NCBITaxon_7222 "Drosophila grimshawi")
+    ("dme" !obo:NCBITaxon_7227 "Drosophila melanogaster")
+    ("dmo" !obo:NCBITaxon_7230 "Drosophila mojavensis")
+    ("dpe" !obo:NCBITaxon_7234 "Drosophila persimilis") 
+    ("dps" !obo:NCBITaxon_7237 "Drosophila pseudoobscura")
+    ("dse" !obo:NCBITaxon_7238 "Drosophila sechellia")
+    ("dsi" !obo:NCBITaxon_7240 "Drosophila simulans")
+    ("dvi" !obo:NCBITaxon_7244 "Drosophila virilis")
+    ("dwi" !obo:NCBITaxon_7260 "Drosophila willistoni")
+    ("dya" !obo:NCBITaxon_7245 "Drosophila yakuba")))
 
 (defmethod species-for-prefix ((m mirbase) prefix)
-  (second (assoc prefix '(("hsa" !obo:NCBITaxon_9606)
-			  ("mmu" !obo:NCBITaxon_10090)
-			  ("rno" !obo:NCBITaxon_10116)
-			  ("gga" !obo:NCBITaxon_9031)
-			  ("cel" !obo:NCBITaxon_6239)
-			  ("cfa" !obo:NCBITaxon_9615)
-			  ("dre" !obo:NCBITaxon_7955)
-			  ("dan" !obo:NCBITaxon_7217)
-			  ("der" !obo:NCBITaxon_7220)
-			  ("dgr" !obo:NCBITaxon_7222)
-			  ("dme" !obo:NCBITaxon_7227)
-			  ("dmo" !obo:NCBITaxon_7230)
-			  ("dpe" !obo:NCBITaxon_7234)
-			  ("dps" !obo:NCBITaxon_7237)
-			  ("dse" !obo:NCBITaxon_7238)
-			  ("dsi" !obo:NCBITaxon_7240)
-			  ("dvi" !obo:NCBITaxon_7244)
-			  ("dwi" !obo:NCBITaxon_7260)
-			  ("dya" !obo:NCBITaxon_7245))
-		 :test 'equal)))
+  (second (assoc prefix *species-uri-association*
+		 :test 'equalp)))
+
+(defmethod species-name-for-prefix ((m mirbase) prefix)
+  (third (assoc prefix *species-uri-association*
+		 :test 'equalp)))
   
 (defmethod uri-for-accession ((m mirbase) accession)
   (make-uri (format nil "http://purl.obolibrary.org/NCRO_~a" accession)))
@@ -116,18 +124,24 @@ blah.
 ;; FIXME This could be called more than once because of more than one human entry for a family
 (defmethod axioms-for-family ((m mirbase) human-entry family-accession)
   (let ((subject (uri-for-accession m family-accession))
-	(gene (gethash (#"replace" (getf human-entry :accession) ";" "") (accession2gene m)))
-	(mirna-gene-product !obo:NCRO_0004019))
+	(mirna-gene-product !obo:NCRO_0004019)
+	(human-members (map 'list 'car
+			  (remove-if-not 
+			   (lambda(el)(#"matches" (car el) "hsa.*"))
+			   (loop for member in (gethash family-accession (family2member m) )
+			      collect (gethash member (accession2name m)))))))
     (list*
      `(declaration (class ,subject))
      `(subclassof ,subject ,mirna-gene-product)
      `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=~a" family-accession)))
      `(annotation-assertion !rdfs:label ,subject ,(format nil "miRNA family ~a" (gethash family-accession (accession2name m))))
-     `(annotation-assertion !definition ,subject
-		  ,(format nil "A miRNA gene product of human gene ~aon chromosome ~a at approximately position ~a-~a, or ortholog therof"
-			   (or (third (getf human-entry :gene)) " ") ;;; FIXME - why missing gene name sometimes
-			   (if (second gene) (#"replace" (second gene) "chr" "") "<fixme>") (or (third gene) "<fixme>") (or (fourth gene) "<fixme>")))
+
+     `(annotation-assertion
+       !definition ,subject
+       ,(format nil "An evolutionary conserved group of miRNA gene products including the human ~{~a~^, ~}, their precursors and their orthologs and paralogs" human-members))
+     `(annotation-assertion !definitionsource ,subject "miRBase")
      `(annotation-assertion !alternativeterm ,subject ,family-accession)
+     `(subclassof ,subject (data-has-value !disjointkey ,family-accession))
      (loop for member in (gethash family-accession (family2member m))
 	for entry = (gethash (concatenate 'string member ";") (entries m))
 	when (human-or-model-in-human-family m entry)
@@ -144,9 +158,9 @@ blah.
      (if (getf entry :description)
 	 `(annotation-assertion !editornote ,subject ,(getf entry :description)))
      `(subclassof ,subject ,pre-mirna)
-     `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=" (getf entry :accession))))
+     `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=~a" (getf entry :accession))))
      `(annotation-assertion !definition ,subject
-			    ,(format nil "A pre-miRNA processed from the primary transcript~a of human gene ~a" (if (eq entry human-entry) "" (format nil " of a ~a ortholog" 'species)) (first gene)))
+			    ,(format nil "A pre-miRNA processed from the primary transcript~a of human gene ~a" (if (eq entry human-entry) "" (format nil " of a ~a ortholog" (species-for-prefix m (subseq (getf entry :name) 0 3)))) (first gene)))
      `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix m (subseq (getf entry :name) 0 3))))
      `(annotation-assertion !alternativeterm ,subject ,(#"replaceAll" (getf entry :accession) ";" ""))
      )))
@@ -169,24 +183,35 @@ blah.
 	  `(subclassof ,subject (object-some-values-from !derivesfrom ,pre-mirna-uri))
 	  `(annotation-assertion !foaf:page ,subject ,(make-uri (format nil "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=~a" accession)))
 	  `(annotation-assertion !definition ,subject
-				 ,(format nil "A mature miRNA with sequence ~a" sequence))
+				 ,(format nil "A mature miRNA expressed in ~a, with sequence ~a" (species-for-prefix m (subseq (getf entry :name) 0 3)) sequence))
 	  `(subclass-of ,subject (object-some-values-from !onlyintaxon ,(species-for-prefix m (subseq (getf entry :name) 0 3))))
 	  `(annotation-assertion !alternativeterm ,subject ,accession)))))
 
 
 (defmethod generate-mirbase-owl ((m mirbase))
-  (with-ontology mirna (:collecting t :ontology-iri "http://purl.obolibrary.org/obo/ncro/dev/ncro-mirna.owl");; :only-return-axioms t :also-return-axioms t)
-      ((asq (imports !obo:ncro.owl))
-       (maphash 
-	(lambda(accession entry) ;; iterate over stem loops
-	  (let ((human-entry (human-or-model-in-human-family m entry)))
-	    (when human-entry
-	      (as (axioms-for-pre-mirna m entry human-entry))
-	      (as (axioms-for-matures m entry))
-	      (when (human-entry m entry)
-		(let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
-		  (when fam
-		    (as (axioms-for-family m entry (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))))))))
-	(entries m)))
+  (with-ontology mirna (:collecting t :ontology-iri "http://purl.obolibrary.org/obo/ncro/dev/ncro-mirna.owl") ;; :only-return-axioms t :also-return-axioms t)
+      ((let ((seen (make-hash-table :test 'equalp)))
+	 (asq (imports !obo:ncro.owl)
+	      (declaration (data-property !disjointkey))
+	      (functional-data-property !disjointkey)
+	      (annotation !definition !disjointkey "A computational artifact that allows a more compact way of ensuring that the miRNA families are considered disjoint"))
+	 (maphash 
+	  (lambda(accession entry) ;; iterate over stem loops
+	    (let ((human-entry (human-or-model-in-human-family m entry)))
+	      (when human-entry
+		(as (axioms-for-pre-mirna m entry human-entry))
+		(as (axioms-for-matures m entry))
+		(when (human-entry m entry)
+		  (let ((fam (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
+		    (when fam
+		      (unless (gethash fam seen)
+			(as (axioms-for-family m entry (gethash (#"replaceAll" (getf entry :accession) ";" "") (member2family m))))
+			(setf (gethash fam seen) t)
+			)))))))
+	  (entries m))))
     (write-rdfxml mirna "~/Desktop/ncro-mirna.owl")
     ))
+
+(defun species-presentation-name (entry )
+
+    (species-for-prefix m (subseq (getf entry :name) 0 3)))

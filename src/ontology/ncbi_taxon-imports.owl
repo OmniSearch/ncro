@@ -53,7 +53,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_10090">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mus musculus</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_40674"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">house mouse</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mouse</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
@@ -66,7 +65,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_10116">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rattus norvegicus</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_40674"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norway rat</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rattus sp. strain Wistar</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">brown rat</obo:IAO_0000118>
@@ -82,7 +80,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_10239">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Viruses</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -94,7 +91,6 @@
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bacteria &lt;prokaryote&gt;</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bacteria</obo:IAO_0000118>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:11</rdfs:seeAlso>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PMID:10425795</rdfs:seeAlso>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PMID:10425796</rdfs:seeAlso>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PMID:10425797</rdfs:seeAlso>
@@ -128,7 +124,7 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_40674">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mammalia</rdfs:label>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mammals</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
@@ -140,7 +136,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_6239">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caenorhabditis elegans</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">roundworm</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
@@ -153,7 +148,6 @@
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila &lt;fruit fly, genus&gt;</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila</obo:IAO_0000118>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruit flies</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruit fly</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
@@ -166,7 +160,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7217">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila ananassae</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -177,7 +170,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7220">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila erecta</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -188,7 +180,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7222">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila grimshawi</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -199,7 +190,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7227">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila melanogaster</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruit fly</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
@@ -211,7 +201,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7230">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila mojavensis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -222,7 +211,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7234">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila persimilis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -233,7 +221,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7237">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila pseudoobscura</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -244,7 +231,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7238">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila sechellia</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -255,7 +241,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7240">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila simulans</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -266,7 +251,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7244">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila virilis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -277,7 +261,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7245">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila yakuba</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -288,7 +271,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7260">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drosophila willistoni</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_7215"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
     </owl:Class>
     
@@ -299,7 +281,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_7955">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Danio rerio</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">leopard danio</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zebra danio</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zebra fish</obo:IAO_0000118>
@@ -314,7 +295,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9031">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gallus gallus</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_40674"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bantam</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chicken</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chickens</obo:IAO_0000118>
@@ -328,7 +308,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Homo sapiens</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_40674"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">human</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">man</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
@@ -341,7 +320,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9615">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Canis lupus familiaris</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_40674"/>
-        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GC_ID:1</rdfs:seeAlso>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dog</obo:IAO_0000118>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dogs</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
